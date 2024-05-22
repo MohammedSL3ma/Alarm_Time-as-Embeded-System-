@@ -1,0 +1,2269 @@
+
+Project.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00001002  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000014e  00800060  00001002  00001096  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000023  008001ae  008001ae  000011e4  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000011e4  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001214  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000120  00000000  00000000  00001250  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001a77  00000000  00000000  00001370  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000a3d  00000000  00000000  00002de7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000e44  00000000  00000000  00003824  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000298  00000000  00000000  00004668  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000005cc  00000000  00000000  00004900  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000d50  00000000  00000000  00004ecc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000d0  00000000  00000000  00005c1c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+       4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+       c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      2c:	0c 94 cb 07 	jmp	0xf96	; 0xf96 <__vector_11>
+      30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+      50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+      54:	11 24       	eor	r1, r1
+      56:	1f be       	out	0x3f, r1	; 63
+      58:	cf e5       	ldi	r28, 0x5F	; 95
+      5a:	d8 e0       	ldi	r29, 0x08	; 8
+      5c:	de bf       	out	0x3e, r29	; 62
+      5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+      60:	11 e0       	ldi	r17, 0x01	; 1
+      62:	a0 e6       	ldi	r26, 0x60	; 96
+      64:	b0 e0       	ldi	r27, 0x00	; 0
+      66:	e2 e0       	ldi	r30, 0x02	; 2
+      68:	f0 e1       	ldi	r31, 0x10	; 16
+      6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+      6c:	05 90       	lpm	r0, Z+
+      6e:	0d 92       	st	X+, r0
+      70:	ae 3a       	cpi	r26, 0xAE	; 174
+      72:	b1 07       	cpc	r27, r17
+      74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+      76:	21 e0       	ldi	r18, 0x01	; 1
+      78:	ae ea       	ldi	r26, 0xAE	; 174
+      7a:	b1 e0       	ldi	r27, 0x01	; 1
+      7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+      7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+      80:	a1 3d       	cpi	r26, 0xD1	; 209
+      82:	b2 07       	cpc	r27, r18
+      84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+      86:	0e 94 46 07 	call	0xe8c	; 0xe8c <main>
+      8a:	0c 94 ff 07 	jmp	0xffe	; 0xffe <_exit>
+
+0000008e <__bad_interrupt>:
+      8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <BUZZER_LED_init>:
+      92:	84 b3       	in	r24, 0x14	; 20
+      94:	80 64       	ori	r24, 0x40	; 64
+      96:	84 bb       	out	0x14, r24	; 20
+      98:	87 b3       	in	r24, 0x17	; 23
+      9a:	80 68       	ori	r24, 0x80	; 128
+      9c:	87 bb       	out	0x17, r24	; 23
+      9e:	85 b3       	in	r24, 0x15	; 21
+      a0:	8f 7b       	andi	r24, 0xBF	; 191
+      a2:	85 bb       	out	0x15, r24	; 21
+      a4:	88 b3       	in	r24, 0x18	; 24
+      a6:	8f 77       	andi	r24, 0x7F	; 127
+      a8:	88 bb       	out	0x18, r24	; 24
+      aa:	08 95       	ret
+
+000000ac <BUZZER_on>:
+      ac:	85 b3       	in	r24, 0x15	; 21
+      ae:	80 64       	ori	r24, 0x40	; 64
+      b0:	85 bb       	out	0x15, r24	; 21
+      b2:	08 95       	ret
+
+000000b4 <BUZZER_off>:
+      b4:	85 b3       	in	r24, 0x15	; 21
+      b6:	8f 7b       	andi	r24, 0xBF	; 191
+      b8:	85 bb       	out	0x15, r24	; 21
+      ba:	08 95       	ret
+
+000000bc <LED_on>:
+      bc:	88 b3       	in	r24, 0x18	; 24
+      be:	80 68       	ori	r24, 0x80	; 128
+      c0:	88 bb       	out	0x18, r24	; 24
+      c2:	08 95       	ret
+
+000000c4 <LED_off>:
+      c4:	88 b3       	in	r24, 0x18	; 24
+      c6:	8f 77       	andi	r24, 0x7F	; 127
+      c8:	88 bb       	out	0x18, r24	; 24
+      ca:	08 95       	ret
+
+000000cc <keypad_init>:
+	{'c', '0', '=' ,'+'}
+};
+
+void keypad_init(){
+	/*Set pins column as input*/
+	CLR_BIT(DDRD,3);
+      cc:	81 b3       	in	r24, 0x11	; 17
+      ce:	87 7f       	andi	r24, 0xF7	; 247
+      d0:	81 bb       	out	0x11, r24	; 17
+	CLR_BIT(DDRD,5);
+      d2:	81 b3       	in	r24, 0x11	; 17
+      d4:	8f 7d       	andi	r24, 0xDF	; 223
+      d6:	81 bb       	out	0x11, r24	; 17
+	CLR_BIT(DDRD,6);
+      d8:	81 b3       	in	r24, 0x11	; 17
+      da:	8f 7b       	andi	r24, 0xBF	; 191
+      dc:	81 bb       	out	0x11, r24	; 17
+	CLR_BIT(DDRD,7);
+      de:	81 b3       	in	r24, 0x11	; 17
+      e0:	8f 77       	andi	r24, 0x7F	; 127
+      e2:	81 bb       	out	0x11, r24	; 17
+	
+	
+	/*set pins of rows as output*/
+	SET_BIT(DDRC,2);
+      e4:	84 b3       	in	r24, 0x14	; 20
+      e6:	84 60       	ori	r24, 0x04	; 4
+      e8:	84 bb       	out	0x14, r24	; 20
+	SET_BIT(DDRC,3);
+      ea:	84 b3       	in	r24, 0x14	; 20
+      ec:	88 60       	ori	r24, 0x08	; 8
+      ee:	84 bb       	out	0x14, r24	; 20
+	SET_BIT(DDRC,4);
+      f0:	84 b3       	in	r24, 0x14	; 20
+      f2:	80 61       	ori	r24, 0x10	; 16
+      f4:	84 bb       	out	0x14, r24	; 20
+	SET_BIT(DDRC,5);
+      f6:	84 b3       	in	r24, 0x14	; 20
+      f8:	80 62       	ori	r24, 0x20	; 32
+      fa:	84 bb       	out	0x14, r24	; 20
+	
+	/*Set col pull up*/
+	SET_BIT(PORTD,3);
+      fc:	82 b3       	in	r24, 0x12	; 18
+      fe:	88 60       	ori	r24, 0x08	; 8
+     100:	82 bb       	out	0x12, r24	; 18
+	SET_BIT(PORTD,5);
+     102:	82 b3       	in	r24, 0x12	; 18
+     104:	80 62       	ori	r24, 0x20	; 32
+     106:	82 bb       	out	0x12, r24	; 18
+	SET_BIT(PORTD,6);
+     108:	82 b3       	in	r24, 0x12	; 18
+     10a:	80 64       	ori	r24, 0x40	; 64
+     10c:	82 bb       	out	0x12, r24	; 18
+	SET_BIT(PORTD,7);
+     10e:	82 b3       	in	r24, 0x12	; 18
+     110:	80 68       	ori	r24, 0x80	; 128
+     112:	82 bb       	out	0x12, r24	; 18
+     114:	08 95       	ret
+
+00000116 <keypad_get_value>:
+}
+
+unsigned char keypad_get_value(){
+     116:	cf 93       	push	r28
+	
+	unsigned char row,col, ans = INVALID_KETPAD_PRESS;
+     118:	cf ef       	ldi	r28, 0xFF	; 255
+	
+	start:
+	
+	for (row = 5; row >= 2; row-- )
+     11a:	e5 e0       	ldi	r30, 0x05	; 5
+     11c:	62 c0       	rjmp	.+196    	; 0x1e2 <keypad_get_value+0xcc>
+	{
+		PORTC |= 0b00111100;	//write high on all rows
+     11e:	85 b3       	in	r24, 0x15	; 21
+     120:	8c 63       	ori	r24, 0x3C	; 60
+     122:	85 bb       	out	0x15, r24	; 21
+		CLR_BIT(PORTC,row);		//write low on one raw
+     124:	25 b3       	in	r18, 0x15	; 21
+     126:	6e 2f       	mov	r22, r30
+     128:	70 e0       	ldi	r23, 0x00	; 0
+     12a:	81 e0       	ldi	r24, 0x01	; 1
+     12c:	90 e0       	ldi	r25, 0x00	; 0
+     12e:	0e 2e       	mov	r0, r30
+     130:	02 c0       	rjmp	.+4      	; 0x136 <keypad_get_value+0x20>
+     132:	88 0f       	add	r24, r24
+     134:	99 1f       	adc	r25, r25
+     136:	0a 94       	dec	r0
+     138:	e2 f7       	brpl	.-8      	; 0x132 <keypad_get_value+0x1c>
+     13a:	80 95       	com	r24
+     13c:	82 23       	and	r24, r18
+     13e:	85 bb       	out	0x15, r24	; 21
+		for (col=7;col>=4;col--)
+     140:	87 e0       	ldi	r24, 0x07	; 7
+     142:	4b c0       	rjmp	.+150    	; 0x1da <keypad_get_value+0xc4>
+		{
+			if(col==4)
+     144:	84 30       	cpi	r24, 0x04	; 4
+     146:	09 f4       	brne	.+2      	; 0x14a <keypad_get_value+0x34>
+				col--;
+     148:	81 50       	subi	r24, 0x01	; 1
+			if(GET_BIT(PIND,col) == 0){
+     14a:	20 b3       	in	r18, 0x10	; 16
+     14c:	48 2f       	mov	r20, r24
+     14e:	50 e0       	ldi	r21, 0x00	; 0
+     150:	30 e0       	ldi	r19, 0x00	; 0
+     152:	08 2e       	mov	r0, r24
+     154:	02 c0       	rjmp	.+4      	; 0x15a <keypad_get_value+0x44>
+     156:	35 95       	asr	r19
+     158:	27 95       	ror	r18
+     15a:	0a 94       	dec	r0
+     15c:	e2 f7       	brpl	.-8      	; 0x156 <keypad_get_value+0x40>
+     15e:	20 fd       	sbrc	r18, 0
+     160:	3b c0       	rjmp	.+118    	; 0x1d8 <keypad_get_value+0xc2>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     162:	2f ef       	ldi	r18, 0xFF	; 255
+     164:	3b ed       	ldi	r19, 0xDB	; 219
+     166:	95 e0       	ldi	r25, 0x05	; 5
+     168:	21 50       	subi	r18, 0x01	; 1
+     16a:	30 40       	sbci	r19, 0x00	; 0
+     16c:	90 40       	sbci	r25, 0x00	; 0
+     16e:	e1 f7       	brne	.-8      	; 0x168 <keypad_get_value+0x52>
+     170:	00 c0       	rjmp	.+0      	; 0x172 <keypad_get_value+0x5c>
+     172:	00 00       	nop
+				_delay_ms(120);
+				if(GET_BIT(PIND,col) == 0){
+     174:	20 b3       	in	r18, 0x10	; 16
+     176:	30 e0       	ldi	r19, 0x00	; 0
+     178:	08 2e       	mov	r0, r24
+     17a:	02 c0       	rjmp	.+4      	; 0x180 <keypad_get_value+0x6a>
+     17c:	35 95       	asr	r19
+     17e:	27 95       	ror	r18
+     180:	0a 94       	dec	r0
+     182:	e2 f7       	brpl	.-8      	; 0x17c <keypad_get_value+0x66>
+     184:	20 fd       	sbrc	r18, 0
+     186:	28 c0       	rjmp	.+80     	; 0x1d8 <keypad_get_value+0xc2>
+					if(col == 3){
+     188:	83 30       	cpi	r24, 0x03	; 3
+     18a:	99 f4       	brne	.+38     	; 0x1b2 <keypad_get_value+0x9c>
+						ans = arr[5-row][7-col-1];
+     18c:	85 e0       	ldi	r24, 0x05	; 5
+     18e:	90 e0       	ldi	r25, 0x00	; 0
+     190:	86 1b       	sub	r24, r22
+     192:	97 0b       	sbc	r25, r23
+     194:	26 e0       	ldi	r18, 0x06	; 6
+     196:	30 e0       	ldi	r19, 0x00	; 0
+     198:	24 1b       	sub	r18, r20
+     19a:	35 0b       	sbc	r19, r21
+     19c:	88 0f       	add	r24, r24
+     19e:	99 1f       	adc	r25, r25
+     1a0:	88 0f       	add	r24, r24
+     1a2:	99 1f       	adc	r25, r25
+     1a4:	80 5a       	subi	r24, 0xA0	; 160
+     1a6:	9f 4f       	sbci	r25, 0xFF	; 255
+     1a8:	dc 01       	movw	r26, r24
+     1aa:	a2 0f       	add	r26, r18
+     1ac:	b3 1f       	adc	r27, r19
+     1ae:	cc 91       	ld	r28, X
+						break;
+     1b0:	17 c0       	rjmp	.+46     	; 0x1e0 <keypad_get_value+0xca>
+						
+					}
+					else{
+						
+						ans = arr[5-row][7-col];
+     1b2:	85 e0       	ldi	r24, 0x05	; 5
+     1b4:	90 e0       	ldi	r25, 0x00	; 0
+     1b6:	86 1b       	sub	r24, r22
+     1b8:	97 0b       	sbc	r25, r23
+     1ba:	27 e0       	ldi	r18, 0x07	; 7
+     1bc:	30 e0       	ldi	r19, 0x00	; 0
+     1be:	24 1b       	sub	r18, r20
+     1c0:	35 0b       	sbc	r19, r21
+     1c2:	88 0f       	add	r24, r24
+     1c4:	99 1f       	adc	r25, r25
+     1c6:	88 0f       	add	r24, r24
+     1c8:	99 1f       	adc	r25, r25
+     1ca:	80 5a       	subi	r24, 0xA0	; 160
+     1cc:	9f 4f       	sbci	r25, 0xFF	; 255
+     1ce:	dc 01       	movw	r26, r24
+     1d0:	a2 0f       	add	r26, r18
+     1d2:	b3 1f       	adc	r27, r19
+     1d4:	cc 91       	ld	r28, X
+						break;
+     1d6:	04 c0       	rjmp	.+8      	; 0x1e0 <keypad_get_value+0xca>
+	
+	for (row = 5; row >= 2; row-- )
+	{
+		PORTC |= 0b00111100;	//write high on all rows
+		CLR_BIT(PORTC,row);		//write low on one raw
+		for (col=7;col>=4;col--)
+     1d8:	81 50       	subi	r24, 0x01	; 1
+     1da:	84 30       	cpi	r24, 0x04	; 4
+     1dc:	08 f0       	brcs	.+2      	; 0x1e0 <keypad_get_value+0xca>
+     1de:	b2 cf       	rjmp	.-156    	; 0x144 <keypad_get_value+0x2e>
+	
+	unsigned char row,col, ans = INVALID_KETPAD_PRESS;
+	
+	start:
+	
+	for (row = 5; row >= 2; row-- )
+     1e0:	e1 50       	subi	r30, 0x01	; 1
+     1e2:	e2 30       	cpi	r30, 0x02	; 2
+     1e4:	08 f0       	brcs	.+2      	; 0x1e8 <keypad_get_value+0xd2>
+     1e6:	9b cf       	rjmp	.-202    	; 0x11e <keypad_get_value+0x8>
+				}
+			}
+		}
+
+	}
+	if (ans == INVALID_KETPAD_PRESS)
+     1e8:	cf 3f       	cpi	r28, 0xFF	; 255
+     1ea:	09 f4       	brne	.+2      	; 0x1ee <keypad_get_value+0xd8>
+     1ec:	96 cf       	rjmp	.-212    	; 0x11a <keypad_get_value+0x4>
+		goto start;
+	else{
+		BUZZER_on();
+     1ee:	0e 94 56 00 	call	0xac	; 0xac <BUZZER_on>
+     1f2:	2f ef       	ldi	r18, 0xFF	; 255
+     1f4:	36 e7       	ldi	r19, 0x76	; 118
+     1f6:	81 e0       	ldi	r24, 0x01	; 1
+     1f8:	21 50       	subi	r18, 0x01	; 1
+     1fa:	30 40       	sbci	r19, 0x00	; 0
+     1fc:	80 40       	sbci	r24, 0x00	; 0
+     1fe:	e1 f7       	brne	.-8      	; 0x1f8 <keypad_get_value+0xe2>
+     200:	00 c0       	rjmp	.+0      	; 0x202 <keypad_get_value+0xec>
+     202:	00 00       	nop
+		_delay_ms(30);
+		BUZZER_off();
+     204:	0e 94 5a 00 	call	0xb4	; 0xb4 <BUZZER_off>
+     208:	9f ef       	ldi	r25, 0xFF	; 255
+     20a:	23 ec       	ldi	r18, 0xC3	; 195
+     20c:	39 e0       	ldi	r19, 0x09	; 9
+     20e:	91 50       	subi	r25, 0x01	; 1
+     210:	20 40       	sbci	r18, 0x00	; 0
+     212:	30 40       	sbci	r19, 0x00	; 0
+     214:	e1 f7       	brne	.-8      	; 0x20e <keypad_get_value+0xf8>
+     216:	00 c0       	rjmp	.+0      	; 0x218 <keypad_get_value+0x102>
+     218:	00 00       	nop
+		_delay_ms(200); //delay before next check keypad
+		return ans;
+		
+		}
+}
+     21a:	8c 2f       	mov	r24, r28
+     21c:	cf 91       	pop	r28
+     21e:	08 95       	ret
+
+00000220 <LCD_cmd>:
+}
+
+void LCD_cmd(unsigned char cmd){
+	//cmd --> 1111 0000 -->  High(H)-->1111 Low(L)-->0000
+	
+	CLR_BIT(PORTA, 3); // RS = 0
+     220:	9b b3       	in	r25, 0x1b	; 27
+     222:	97 7f       	andi	r25, 0xF7	; 247
+     224:	9b bb       	out	0x1b, r25	; 27
+
+	PORTB &= 0b11101000;
+     226:	98 b3       	in	r25, 0x18	; 24
+     228:	98 7e       	andi	r25, 0xE8	; 232
+     22a:	98 bb       	out	0x18, r25	; 24
+	//High
+	unsigned char H = ((cmd&0xf0)>>4);      // H = 0000 1111
+     22c:	28 2f       	mov	r18, r24
+     22e:	22 95       	swap	r18
+     230:	2f 70       	andi	r18, 0x0F	; 15
+	unsigned char temp = ((H & 0b00001000) << 1) | ((H & 0b00000111)); // H = 0001 0111
+     232:	92 2f       	mov	r25, r18
+     234:	98 70       	andi	r25, 0x08	; 8
+     236:	49 2f       	mov	r20, r25
+     238:	50 e0       	ldi	r21, 0x00	; 0
+     23a:	44 0f       	add	r20, r20
+     23c:	55 1f       	adc	r21, r21
+     23e:	27 70       	andi	r18, 0x07	; 7
+     240:	42 2b       	or	r20, r18
+	PORTB|=temp;
+     242:	98 b3       	in	r25, 0x18	; 24
+     244:	49 2b       	or	r20, r25
+     246:	48 bb       	out	0x18, r20	; 24
+
+	//Latch
+	CLR_BIT(PORTA, 2); //EN = 0
+     248:	9b b3       	in	r25, 0x1b	; 27
+     24a:	9b 7f       	andi	r25, 0xFB	; 251
+     24c:	9b bb       	out	0x1b, r25	; 27
+	SET_BIT(PORTA, 2); //EN = 1
+     24e:	9b b3       	in	r25, 0x1b	; 27
+     250:	94 60       	ori	r25, 0x04	; 4
+     252:	9b bb       	out	0x1b, r25	; 27
+     254:	ef e9       	ldi	r30, 0x9F	; 159
+     256:	ff e0       	ldi	r31, 0x0F	; 15
+     258:	31 97       	sbiw	r30, 0x01	; 1
+     25a:	f1 f7       	brne	.-4      	; 0x258 <LCD_cmd+0x38>
+     25c:	00 c0       	rjmp	.+0      	; 0x25e <LCD_cmd+0x3e>
+     25e:	00 00       	nop
+	_delay_ms(1);
+	CLR_BIT(PORTA, 2); //EN = 0
+     260:	9b b3       	in	r25, 0x1b	; 27
+     262:	9b 7f       	andi	r25, 0xFB	; 251
+     264:	9b bb       	out	0x1b, r25	; 27
+
+	PORTB &= 0b11101000;  // make PORTA 1.2.3.4 = 0
+     266:	98 b3       	in	r25, 0x18	; 24
+     268:	98 7e       	andi	r25, 0xE8	; 232
+     26a:	98 bb       	out	0x18, r25	; 24
+	//Low
+	unsigned char L = (cmd&0x0f);      // L = 0000 1111
+	unsigned char temp2 = ((L & 0b00001000) << 1) | ((L & 0b00000111)); // L = 0001 0111
+     26c:	98 2f       	mov	r25, r24
+     26e:	98 70       	andi	r25, 0x08	; 8
+     270:	29 2f       	mov	r18, r25
+     272:	30 e0       	ldi	r19, 0x00	; 0
+     274:	22 0f       	add	r18, r18
+     276:	33 1f       	adc	r19, r19
+     278:	87 70       	andi	r24, 0x07	; 7
+     27a:	28 2b       	or	r18, r24
+	PORTB|=temp2;
+     27c:	88 b3       	in	r24, 0x18	; 24
+     27e:	28 2b       	or	r18, r24
+     280:	28 bb       	out	0x18, r18	; 24
+
+	//Latch
+	CLR_BIT(PORTA, 2); //EN = 0
+     282:	8b b3       	in	r24, 0x1b	; 27
+     284:	8b 7f       	andi	r24, 0xFB	; 251
+     286:	8b bb       	out	0x1b, r24	; 27
+	SET_BIT(PORTA, 2); //EN = 1
+     288:	8b b3       	in	r24, 0x1b	; 27
+     28a:	84 60       	ori	r24, 0x04	; 4
+     28c:	8b bb       	out	0x1b, r24	; 27
+     28e:	8f e9       	ldi	r24, 0x9F	; 159
+     290:	9f e0       	ldi	r25, 0x0F	; 15
+     292:	01 97       	sbiw	r24, 0x01	; 1
+     294:	f1 f7       	brne	.-4      	; 0x292 <LCD_cmd+0x72>
+     296:	00 c0       	rjmp	.+0      	; 0x298 <LCD_cmd+0x78>
+     298:	00 00       	nop
+	_delay_ms(1);
+	CLR_BIT(PORTA, 2); //EN = 0
+     29a:	8b b3       	in	r24, 0x1b	; 27
+     29c:	8b 7f       	andi	r24, 0xFB	; 251
+     29e:	8b bb       	out	0x1b, r24	; 27
+     2a0:	ef e1       	ldi	r30, 0x1F	; 31
+     2a2:	fe e4       	ldi	r31, 0x4E	; 78
+     2a4:	31 97       	sbiw	r30, 0x01	; 1
+     2a6:	f1 f7       	brne	.-4      	; 0x2a4 <LCD_cmd+0x84>
+     2a8:	00 c0       	rjmp	.+0      	; 0x2aa <LCD_cmd+0x8a>
+     2aa:	00 00       	nop
+     2ac:	08 95       	ret
+
+000002ae <LCD_inti>:
+#include "LCD.h"
+#include <stdio.h>
+
+void LCD_inti(void){
+	SET_BIT(DDRA,3);  //RS  
+     2ae:	8a b3       	in	r24, 0x1a	; 26
+     2b0:	88 60       	ori	r24, 0x08	; 8
+     2b2:	8a bb       	out	0x1a, r24	; 26
+	SET_BIT(DDRA,2);  //EN
+     2b4:	8a b3       	in	r24, 0x1a	; 26
+     2b6:	84 60       	ori	r24, 0x04	; 4
+     2b8:	8a bb       	out	0x1a, r24	; 26
+	
+	SET_BIT(DDRB, 0);
+     2ba:	87 b3       	in	r24, 0x17	; 23
+     2bc:	81 60       	ori	r24, 0x01	; 1
+     2be:	87 bb       	out	0x17, r24	; 23
+	SET_BIT(DDRB, 1);
+     2c0:	87 b3       	in	r24, 0x17	; 23
+     2c2:	82 60       	ori	r24, 0x02	; 2
+     2c4:	87 bb       	out	0x17, r24	; 23
+	SET_BIT(DDRB, 2);
+     2c6:	87 b3       	in	r24, 0x17	; 23
+     2c8:	84 60       	ori	r24, 0x04	; 4
+     2ca:	87 bb       	out	0x17, r24	; 23
+	SET_BIT(DDRB, 4);
+     2cc:	87 b3       	in	r24, 0x17	; 23
+     2ce:	80 61       	ori	r24, 0x10	; 16
+     2d0:	87 bb       	out	0x17, r24	; 23
+     2d2:	8f e5       	ldi	r24, 0x5F	; 95
+     2d4:	9a ee       	ldi	r25, 0xEA	; 234
+     2d6:	01 97       	sbiw	r24, 0x01	; 1
+     2d8:	f1 f7       	brne	.-4      	; 0x2d6 <LCD_inti+0x28>
+     2da:	00 c0       	rjmp	.+0      	; 0x2dc <LCD_inti+0x2e>
+     2dc:	00 00       	nop
+	
+	_delay_ms(15);
+	
+	LCD_cmd(0x02);
+     2de:	82 e0       	ldi	r24, 0x02	; 2
+     2e0:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+	LCD_cmd(0x28);
+     2e4:	88 e2       	ldi	r24, 0x28	; 40
+     2e6:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+	LCD_cmd(0x0c);
+     2ea:	8c e0       	ldi	r24, 0x0C	; 12
+     2ec:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+	LCD_cmd(0x01);
+     2f0:	81 e0       	ldi	r24, 0x01	; 1
+     2f2:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+	LCD_cmd(0x80);
+     2f6:	80 e8       	ldi	r24, 0x80	; 128
+     2f8:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+     2fc:	08 95       	ret
+
+000002fe <LCD_write>:
+
+	_delay_ms(5);	   //wait before next command
+}
+
+void LCD_write(unsigned char chr){
+	SET_BIT(PORTA, 3); // RS = 1
+     2fe:	9b b3       	in	r25, 0x1b	; 27
+     300:	98 60       	ori	r25, 0x08	; 8
+     302:	9b bb       	out	0x1b, r25	; 27
+
+	PORTB &= 0b11101000;
+     304:	98 b3       	in	r25, 0x18	; 24
+     306:	98 7e       	andi	r25, 0xE8	; 232
+     308:	98 bb       	out	0x18, r25	; 24
+	//High
+	unsigned char H = (chr&0xf0)>>4;      // H = 0000 1111
+     30a:	28 2f       	mov	r18, r24
+     30c:	22 95       	swap	r18
+     30e:	2f 70       	andi	r18, 0x0F	; 15
+	unsigned char temp = ((H & 0b00001000) << 1) | ((H & 0b00000111)); // H = 0001 0111
+     310:	92 2f       	mov	r25, r18
+     312:	98 70       	andi	r25, 0x08	; 8
+     314:	49 2f       	mov	r20, r25
+     316:	50 e0       	ldi	r21, 0x00	; 0
+     318:	44 0f       	add	r20, r20
+     31a:	55 1f       	adc	r21, r21
+     31c:	27 70       	andi	r18, 0x07	; 7
+     31e:	42 2b       	or	r20, r18
+	PORTB|=temp;
+     320:	98 b3       	in	r25, 0x18	; 24
+     322:	49 2b       	or	r20, r25
+     324:	48 bb       	out	0x18, r20	; 24
+
+	//Latch
+	CLR_BIT(PORTA, 2); //EN = 0
+     326:	9b b3       	in	r25, 0x1b	; 27
+     328:	9b 7f       	andi	r25, 0xFB	; 251
+     32a:	9b bb       	out	0x1b, r25	; 27
+	SET_BIT(PORTA, 2); //EN = 1
+     32c:	9b b3       	in	r25, 0x1b	; 27
+     32e:	94 60       	ori	r25, 0x04	; 4
+     330:	9b bb       	out	0x1b, r25	; 27
+     332:	ef e9       	ldi	r30, 0x9F	; 159
+     334:	ff e0       	ldi	r31, 0x0F	; 15
+     336:	31 97       	sbiw	r30, 0x01	; 1
+     338:	f1 f7       	brne	.-4      	; 0x336 <LCD_write+0x38>
+     33a:	00 c0       	rjmp	.+0      	; 0x33c <LCD_write+0x3e>
+     33c:	00 00       	nop
+	_delay_ms(1);
+	CLR_BIT(PORTA, 2); //EN = 0
+     33e:	9b b3       	in	r25, 0x1b	; 27
+     340:	9b 7f       	andi	r25, 0xFB	; 251
+     342:	9b bb       	out	0x1b, r25	; 27
+
+	PORTB &= 0b11101000;  // make PORTA 1.2.3.4 = 0
+     344:	98 b3       	in	r25, 0x18	; 24
+     346:	98 7e       	andi	r25, 0xE8	; 232
+     348:	98 bb       	out	0x18, r25	; 24
+	//Low
+	unsigned char L = (chr&0x0f);      // L = 0000 1111
+	unsigned char temp2 = ((L & 0b00001000) << 1) | ((L & 0b00000111)); // L = 0001 0111
+     34a:	98 2f       	mov	r25, r24
+     34c:	98 70       	andi	r25, 0x08	; 8
+     34e:	29 2f       	mov	r18, r25
+     350:	30 e0       	ldi	r19, 0x00	; 0
+     352:	22 0f       	add	r18, r18
+     354:	33 1f       	adc	r19, r19
+     356:	87 70       	andi	r24, 0x07	; 7
+     358:	28 2b       	or	r18, r24
+	PORTB|=temp2;
+     35a:	88 b3       	in	r24, 0x18	; 24
+     35c:	28 2b       	or	r18, r24
+     35e:	28 bb       	out	0x18, r18	; 24
+
+	//Latch
+	CLR_BIT(PORTA, 2); //EN = 0
+     360:	8b b3       	in	r24, 0x1b	; 27
+     362:	8b 7f       	andi	r24, 0xFB	; 251
+     364:	8b bb       	out	0x1b, r24	; 27
+	SET_BIT(PORTA, 2); //EN = 1
+     366:	8b b3       	in	r24, 0x1b	; 27
+     368:	84 60       	ori	r24, 0x04	; 4
+     36a:	8b bb       	out	0x1b, r24	; 27
+     36c:	8f e9       	ldi	r24, 0x9F	; 159
+     36e:	9f e0       	ldi	r25, 0x0F	; 15
+     370:	01 97       	sbiw	r24, 0x01	; 1
+     372:	f1 f7       	brne	.-4      	; 0x370 <LCD_write+0x72>
+     374:	00 c0       	rjmp	.+0      	; 0x376 <LCD_write+0x78>
+     376:	00 00       	nop
+	_delay_ms(1);
+	CLR_BIT(PORTA, 2); //EN = 0
+     378:	8b b3       	in	r24, 0x1b	; 27
+     37a:	8b 7f       	andi	r24, 0xFB	; 251
+     37c:	8b bb       	out	0x1b, r24	; 27
+     37e:	ef e1       	ldi	r30, 0x1F	; 31
+     380:	fe e4       	ldi	r31, 0x4E	; 78
+     382:	31 97       	sbiw	r30, 0x01	; 1
+     384:	f1 f7       	brne	.-4      	; 0x382 <LCD_write+0x84>
+     386:	00 c0       	rjmp	.+0      	; 0x388 <LCD_write+0x8a>
+     388:	00 00       	nop
+     38a:	08 95       	ret
+
+0000038c <LCD_writeArray>:
+
+	_delay_ms(5);	   //wait before next write
+}
+
+void LCD_writeArray(const char* chr){
+     38c:	cf 93       	push	r28
+     38e:	df 93       	push	r29
+     390:	ec 01       	movw	r28, r24
+	while (*chr) {
+     392:	03 c0       	rjmp	.+6      	; 0x39a <LCD_writeArray+0xe>
+		LCD_write(*chr++);
+     394:	21 96       	adiw	r28, 0x01	; 1
+     396:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+
+	_delay_ms(5);	   //wait before next write
+}
+
+void LCD_writeArray(const char* chr){
+	while (*chr) {
+     39a:	88 81       	ld	r24, Y
+     39c:	81 11       	cpse	r24, r1
+     39e:	fa cf       	rjmp	.-12     	; 0x394 <LCD_writeArray+0x8>
+		LCD_write(*chr++);
+	}
+}
+     3a0:	df 91       	pop	r29
+     3a2:	cf 91       	pop	r28
+     3a4:	08 95       	ret
+
+000003a6 <lcd_gotoxy>:
+
+void lcd_gotoxy(uint8_t x, uint8_t y) {
+uint8_t address = 0;
+if (y == 0) {
+     3a6:	66 23       	and	r22, r22
+     3a8:	29 f0       	breq	.+10     	; 0x3b4 <lcd_gotoxy+0xe>
+address = 0x00 + x; //start of line 1
+}
+else if (y == 1) {
+     3aa:	61 30       	cpi	r22, 0x01	; 1
+     3ac:	11 f4       	brne	.+4      	; 0x3b2 <lcd_gotoxy+0xc>
+address = 0x40 + x; // start of line 2
+     3ae:	80 5c       	subi	r24, 0xC0	; 192
+     3b0:	01 c0       	rjmp	.+2      	; 0x3b4 <lcd_gotoxy+0xe>
+		LCD_write(*chr++);
+	}
+}
+
+void lcd_gotoxy(uint8_t x, uint8_t y) {
+uint8_t address = 0;
+     3b2:	80 e0       	ldi	r24, 0x00	; 0
+address = 0x00 + x; //start of line 1
+}
+else if (y == 1) {
+address = 0x40 + x; // start of line 2
+}
+LCD_cmd(0x80 | address); // Set DDRAM address on LCD
+     3b4:	80 68       	ori	r24, 0x80	; 128
+     3b6:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+     3ba:	08 95       	ret
+
+000003bc <displayTime>:
+	}
+	
+}
+
+void displayTime(short hour_tens , short hour_ones , short minute_tens, short minute_ones, short second_tens, short second_ones, short am_pm)
+{
+     3bc:	cf 92       	push	r12
+     3be:	df 92       	push	r13
+     3c0:	ef 92       	push	r14
+     3c2:	ff 92       	push	r15
+     3c4:	0f 93       	push	r16
+     3c6:	1f 93       	push	r17
+     3c8:	cf 93       	push	r28
+     3ca:	df 93       	push	r29
+     3cc:	f8 2e       	mov	r15, r24
+     3ce:	16 2f       	mov	r17, r22
+     3d0:	d4 2f       	mov	r29, r20
+     3d2:	c2 2f       	mov	r28, r18
+	LCD_cmd(0x01);
+     3d4:	81 e0       	ldi	r24, 0x01	; 1
+     3d6:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+	lcd_gotoxy(5,0);
+     3da:	60 e0       	ldi	r22, 0x00	; 0
+     3dc:	85 e0       	ldi	r24, 0x05	; 5
+     3de:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <lcd_gotoxy>
+	if (Alarm_Mode==0)
+     3e2:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <__data_end>
+     3e6:	90 91 af 01 	lds	r25, 0x01AF	; 0x8001af <__data_end+0x1>
+     3ea:	00 97       	sbiw	r24, 0x00	; 0
+     3ec:	29 f4       	brne	.+10     	; 0x3f8 <displayTime+0x3c>
+	{
+		LCD_writeArray("Time");
+     3ee:	86 e7       	ldi	r24, 0x76	; 118
+     3f0:	90 e0       	ldi	r25, 0x00	; 0
+     3f2:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+     3f6:	06 c0       	rjmp	.+12     	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+	}
+	else if (Alarm_Mode==1)
+     3f8:	01 97       	sbiw	r24, 0x01	; 1
+     3fa:	21 f4       	brne	.+8      	; 0x404 <__EEPROM_REGION_LENGTH__+0x4>
+	{
+		LCD_writeArray("Alarm Time");
+     3fc:	80 e7       	ldi	r24, 0x70	; 112
+     3fe:	90 e0       	ldi	r25, 0x00	; 0
+     400:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+	}
+	
+	lcd_gotoxy(0,1);
+     404:	61 e0       	ldi	r22, 0x01	; 1
+     406:	80 e0       	ldi	r24, 0x00	; 0
+     408:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <lcd_gotoxy>
+
+	LCD_write(hour_tens);
+     40c:	8f 2d       	mov	r24, r15
+     40e:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+	LCD_write(hour_ones);
+     412:	81 2f       	mov	r24, r17
+     414:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+	LCD_write(':');
+     418:	8a e3       	ldi	r24, 0x3A	; 58
+     41a:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+	LCD_write(minute_tens);
+     41e:	8d 2f       	mov	r24, r29
+     420:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+	LCD_write(minute_ones);
+     424:	8c 2f       	mov	r24, r28
+     426:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+	LCD_write(':');
+     42a:	8a e3       	ldi	r24, 0x3A	; 58
+     42c:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+	LCD_write(second_tens);
+     430:	80 2f       	mov	r24, r16
+     432:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+	LCD_write(second_ones);
+     436:	8e 2d       	mov	r24, r14
+     438:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+
+	if (am_pm == '1')
+     43c:	81 e3       	ldi	r24, 0x31	; 49
+     43e:	c8 16       	cp	r12, r24
+     440:	d1 04       	cpc	r13, r1
+     442:	21 f4       	brne	.+8      	; 0x44c <__EEPROM_REGION_LENGTH__+0x4c>
+		LCD_write('P');
+     444:	80 e5       	ldi	r24, 0x50	; 80
+     446:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+     44a:	03 c0       	rjmp	.+6      	; 0x452 <__EEPROM_REGION_LENGTH__+0x52>
+	else
+		LCD_write('A');
+     44c:	81 e4       	ldi	r24, 0x41	; 65
+     44e:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+
+	LCD_write('M');
+     452:	8d e4       	ldi	r24, 0x4D	; 77
+     454:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+}
+     458:	df 91       	pop	r29
+     45a:	cf 91       	pop	r28
+     45c:	1f 91       	pop	r17
+     45e:	0f 91       	pop	r16
+     460:	ff 90       	pop	r15
+     462:	ef 90       	pop	r14
+     464:	df 90       	pop	r13
+     466:	cf 90       	pop	r12
+     468:	08 95       	ret
+
+0000046a <Set_Time>:
+		}
+		
+	}
+}
+
+void Set_Time(){
+     46a:	cf 92       	push	r12
+     46c:	df 92       	push	r13
+     46e:	ef 92       	push	r14
+     470:	ff 92       	push	r15
+     472:	0f 93       	push	r16
+     474:	1f 93       	push	r17
+	//    reset time    //
+		am_pm = 0;
+     476:	10 92 b3 01 	sts	0x01B3, r1	; 0x8001b3 <am_pm+0x1>
+     47a:	10 92 b2 01 	sts	0x01B2, r1	; 0x8001b2 <am_pm>
+		hour_ones = 0;
+     47e:	10 92 bf 01 	sts	0x01BF, r1	; 0x8001bf <hour_ones+0x1>
+     482:	10 92 be 01 	sts	0x01BE, r1	; 0x8001be <hour_ones>
+		hour_tens = 0;
+     486:	10 92 bd 01 	sts	0x01BD, r1	; 0x8001bd <hour_tens+0x1>
+     48a:	10 92 bc 01 	sts	0x01BC, r1	; 0x8001bc <hour_tens>
+		
+		minute_ones = 0;
+     48e:	10 92 bb 01 	sts	0x01BB, r1	; 0x8001bb <minute_ones+0x1>
+     492:	10 92 ba 01 	sts	0x01BA, r1	; 0x8001ba <minute_ones>
+		minute_tens = 0;
+     496:	10 92 b9 01 	sts	0x01B9, r1	; 0x8001b9 <minute_tens+0x1>
+     49a:	10 92 b8 01 	sts	0x01B8, r1	; 0x8001b8 <minute_tens>
+		
+		second_ones = 0;
+     49e:	10 92 b7 01 	sts	0x01B7, r1	; 0x8001b7 <second_ones+0x1>
+     4a2:	10 92 b6 01 	sts	0x01B6, r1	; 0x8001b6 <second_ones>
+		second_tens = 0;
+     4a6:	10 92 b5 01 	sts	0x01B5, r1	; 0x8001b5 <second_tens+0x1>
+     4aa:	10 92 b4 01 	sts	0x01B4, r1	; 0x8001b4 <second_tens>
+	
+	unsigned char key = 0;
+	
+	//                      Set hour                              //
+		H_tens:
+		LCD_cmd(0x01);
+     4ae:	81 e0       	ldi	r24, 0x01	; 1
+     4b0:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		
+	key = keypad_get_value();
+     4b4:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+	if (key>='0' && key<='1'){// hour == ..0:00:00
+     4b8:	20 ed       	ldi	r18, 0xD0	; 208
+     4ba:	28 0f       	add	r18, r24
+     4bc:	22 30       	cpi	r18, 0x02	; 2
+     4be:	08 f0       	brcs	.+2      	; 0x4c2 <Set_Time+0x58>
+     4c0:	58 c0       	rjmp	.+176    	; 0x572 <Set_Time+0x108>
+		hour_tens = (short)key;
+     4c2:	99 27       	eor	r25, r25
+     4c4:	90 93 bd 01 	sts	0x01BD, r25	; 0x8001bd <hour_tens+0x1>
+     4c8:	80 93 bc 01 	sts	0x01BC, r24	; 0x8001bc <hour_tens>
+		LCD_write(hour_tens);
+     4cc:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     4d0:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     4d4:	0e 94 7f 01 	call	0x2fe	; 0x2fe <LCD_write>
+		
+		key = 0; //reset key
+		
+			H_ones:
+			LCD_cmd(0x01);
+     4d8:	81 e0       	ldi	r24, 0x01	; 1
+     4da:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			
+			displayTime(hour_tens, hour_ones, minute_tens, minute_ones, second_tens, second_ones, am_pm);
+     4de:	c0 90 b2 01 	lds	r12, 0x01B2	; 0x8001b2 <am_pm>
+     4e2:	d0 90 b3 01 	lds	r13, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     4e6:	e0 90 b6 01 	lds	r14, 0x01B6	; 0x8001b6 <second_ones>
+     4ea:	f0 90 b7 01 	lds	r15, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     4ee:	00 91 b4 01 	lds	r16, 0x01B4	; 0x8001b4 <second_tens>
+     4f2:	10 91 b5 01 	lds	r17, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     4f6:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     4fa:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     4fe:	40 91 b8 01 	lds	r20, 0x01B8	; 0x8001b8 <minute_tens>
+     502:	50 91 b9 01 	lds	r21, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     506:	60 91 be 01 	lds	r22, 0x01BE	; 0x8001be <hour_ones>
+     50a:	70 91 bf 01 	lds	r23, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     50e:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     512:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     516:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+			
+		key = keypad_get_value();
+     51a:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+		if (key>='1' && key<='9' && hour_tens=='0'){// hour == 0..:00:00
+     51e:	2f ec       	ldi	r18, 0xCF	; 207
+     520:	28 0f       	add	r18, r24
+     522:	29 30       	cpi	r18, 0x09	; 9
+     524:	68 f4       	brcc	.+26     	; 0x540 <Set_Time+0xd6>
+     526:	20 91 bc 01 	lds	r18, 0x01BC	; 0x8001bc <hour_tens>
+     52a:	30 91 bd 01 	lds	r19, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     52e:	20 33       	cpi	r18, 0x30	; 48
+     530:	31 05       	cpc	r19, r1
+     532:	31 f4       	brne	.+12     	; 0x540 <Set_Time+0xd6>
+			hour_ones=(short)key;
+     534:	99 27       	eor	r25, r25
+     536:	90 93 bf 01 	sts	0x01BF, r25	; 0x8001bf <hour_ones+0x1>
+     53a:	80 93 be 01 	sts	0x01BE, r24	; 0x8001be <hour_ones>
+     53e:	2a c0       	rjmp	.+84     	; 0x594 <Set_Time+0x12a>
+
+			}
+			
+		else if (key>='0' && key<='2' && hour_tens=='1'){// hour == 1..:00:00
+     540:	20 ed       	ldi	r18, 0xD0	; 208
+     542:	28 0f       	add	r18, r24
+     544:	23 30       	cpi	r18, 0x03	; 3
+     546:	68 f4       	brcc	.+26     	; 0x562 <Set_Time+0xf8>
+     548:	20 91 bc 01 	lds	r18, 0x01BC	; 0x8001bc <hour_tens>
+     54c:	30 91 bd 01 	lds	r19, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     550:	21 33       	cpi	r18, 0x31	; 49
+     552:	31 05       	cpc	r19, r1
+     554:	31 f4       	brne	.+12     	; 0x562 <Set_Time+0xf8>
+			hour_ones=(short)key;
+     556:	99 27       	eor	r25, r25
+     558:	90 93 bf 01 	sts	0x01BF, r25	; 0x8001bf <hour_ones+0x1>
+     55c:	80 93 be 01 	sts	0x01BE, r24	; 0x8001be <hour_ones>
+     560:	19 c0       	rjmp	.+50     	; 0x594 <Set_Time+0x12a>
+
+			}
+			
+		else {// if user set char instead of number
+			LCD_cmd(0x01);
+     562:	81 e0       	ldi	r24, 0x01	; 1
+     564:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			LCD_writeArray("Please Enter correct number to set hour!!");
+     568:	8b e7       	ldi	r24, 0x7B	; 123
+     56a:	90 e0       	ldi	r25, 0x00	; 0
+     56c:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+			goto H_ones;
+     570:	b3 cf       	rjmp	.-154    	; 0x4d8 <Set_Time+0x6e>
+		}
+		
+		key = 0;// reset key
+	}
+	else{//if user enter invalid number in hour's tens 
+		LCD_cmd(0x01);
+     572:	81 e0       	ldi	r24, 0x01	; 1
+     574:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		LCD_writeArray("Please Enter 0 or 1  to set hour's tens!!");
+     578:	85 ea       	ldi	r24, 0xA5	; 165
+     57a:	90 e0       	ldi	r25, 0x00	; 0
+     57c:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+     580:	2f ef       	ldi	r18, 0xFF	; 255
+     582:	8b e4       	ldi	r24, 0x4B	; 75
+     584:	9d e1       	ldi	r25, 0x1D	; 29
+     586:	21 50       	subi	r18, 0x01	; 1
+     588:	80 40       	sbci	r24, 0x00	; 0
+     58a:	90 40       	sbci	r25, 0x00	; 0
+     58c:	e1 f7       	brne	.-8      	; 0x586 <Set_Time+0x11c>
+     58e:	00 c0       	rjmp	.+0      	; 0x590 <Set_Time+0x126>
+     590:	00 00       	nop
+     592:	8d cf       	rjmp	.-230    	; 0x4ae <Set_Time+0x44>
+	//___________________________________________________________________//
+	
+	
+	//                      Set minute                                  //
+		M_tens:
+		LCD_cmd(0x01);
+     594:	81 e0       	ldi	r24, 0x01	; 1
+     596:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		
+	displayTime(hour_tens, hour_ones, minute_tens, minute_ones, second_tens, second_ones, am_pm);
+     59a:	c0 90 b2 01 	lds	r12, 0x01B2	; 0x8001b2 <am_pm>
+     59e:	d0 90 b3 01 	lds	r13, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     5a2:	e0 90 b6 01 	lds	r14, 0x01B6	; 0x8001b6 <second_ones>
+     5a6:	f0 90 b7 01 	lds	r15, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     5aa:	00 91 b4 01 	lds	r16, 0x01B4	; 0x8001b4 <second_tens>
+     5ae:	10 91 b5 01 	lds	r17, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     5b2:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     5b6:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     5ba:	40 91 b8 01 	lds	r20, 0x01B8	; 0x8001b8 <minute_tens>
+     5be:	50 91 b9 01 	lds	r21, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     5c2:	60 91 be 01 	lds	r22, 0x01BE	; 0x8001be <hour_ones>
+     5c6:	70 91 bf 01 	lds	r23, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     5ca:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     5ce:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     5d2:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+	key = keypad_get_value();
+     5d6:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+	if (key>='0' && key<='5'){// minute == ..0:00:00
+     5da:	20 ed       	ldi	r18, 0xD0	; 208
+     5dc:	28 0f       	add	r18, r24
+     5de:	26 30       	cpi	r18, 0x06	; 6
+     5e0:	08 f0       	brcs	.+2      	; 0x5e4 <Set_Time+0x17a>
+     5e2:	43 c0       	rjmp	.+134    	; 0x66a <Set_Time+0x200>
+		minute_tens =(short) key;
+     5e4:	99 27       	eor	r25, r25
+     5e6:	90 93 b9 01 	sts	0x01B9, r25	; 0x8001b9 <minute_tens+0x1>
+     5ea:	80 93 b8 01 	sts	0x01B8, r24	; 0x8001b8 <minute_tens>
+			//reset key
+		key = 0; 
+	
+		
+		M_ones:
+		LCD_cmd(0x01);
+     5ee:	81 e0       	ldi	r24, 0x01	; 1
+     5f0:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		
+		displayTime(hour_tens, hour_ones, minute_tens, minute_ones, second_tens, second_ones, am_pm);
+     5f4:	c0 90 b2 01 	lds	r12, 0x01B2	; 0x8001b2 <am_pm>
+     5f8:	d0 90 b3 01 	lds	r13, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     5fc:	e0 90 b6 01 	lds	r14, 0x01B6	; 0x8001b6 <second_ones>
+     600:	f0 90 b7 01 	lds	r15, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     604:	00 91 b4 01 	lds	r16, 0x01B4	; 0x8001b4 <second_tens>
+     608:	10 91 b5 01 	lds	r17, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     60c:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     610:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     614:	40 91 b8 01 	lds	r20, 0x01B8	; 0x8001b8 <minute_tens>
+     618:	50 91 b9 01 	lds	r21, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     61c:	60 91 be 01 	lds	r22, 0x01BE	; 0x8001be <hour_ones>
+     620:	70 91 bf 01 	lds	r23, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     624:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     628:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     62c:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+		
+		key = keypad_get_value();
+     630:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+		if (key>='0' && key<='9'){// minute == 00:0..:00
+     634:	20 ed       	ldi	r18, 0xD0	; 208
+     636:	28 0f       	add	r18, r24
+     638:	2a 30       	cpi	r18, 0x0A	; 10
+     63a:	30 f4       	brcc	.+12     	; 0x648 <Set_Time+0x1de>
+			minute_ones=(short)key;
+     63c:	99 27       	eor	r25, r25
+     63e:	90 93 bb 01 	sts	0x01BB, r25	; 0x8001bb <minute_ones+0x1>
+     642:	80 93 ba 01 	sts	0x01BA, r24	; 0x8001ba <minute_ones>
+     646:	22 c0       	rjmp	.+68     	; 0x68c <Set_Time+0x222>
+		}
+		
+		else {// if user set char instead of number
+			LCD_cmd(0x01);
+     648:	81 e0       	ldi	r24, 0x01	; 1
+     64a:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			LCD_writeArray("Please Enter correct number to set minute!!");
+     64e:	8f ec       	ldi	r24, 0xCF	; 207
+     650:	90 e0       	ldi	r25, 0x00	; 0
+     652:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+     656:	2f ef       	ldi	r18, 0xFF	; 255
+     658:	8b e4       	ldi	r24, 0x4B	; 75
+     65a:	9d e1       	ldi	r25, 0x1D	; 29
+     65c:	21 50       	subi	r18, 0x01	; 1
+     65e:	80 40       	sbci	r24, 0x00	; 0
+     660:	90 40       	sbci	r25, 0x00	; 0
+     662:	e1 f7       	brne	.-8      	; 0x65c <Set_Time+0x1f2>
+     664:	00 c0       	rjmp	.+0      	; 0x666 <Set_Time+0x1fc>
+     666:	00 00       	nop
+     668:	c2 cf       	rjmp	.-124    	; 0x5ee <Set_Time+0x184>
+		}
+		//_delay_ms(200);
+		key = 0;// reset key
+	}
+	else{//if user enter invalid number in minute's tens
+		LCD_cmd(0x01);
+     66a:	81 e0       	ldi	r24, 0x01	; 1
+     66c:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		LCD_writeArray("Please Enter 0 to 5  to set minute's tens!!");
+     670:	8b ef       	ldi	r24, 0xFB	; 251
+     672:	90 e0       	ldi	r25, 0x00	; 0
+     674:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+     678:	2f ef       	ldi	r18, 0xFF	; 255
+     67a:	8b e4       	ldi	r24, 0x4B	; 75
+     67c:	9d e1       	ldi	r25, 0x1D	; 29
+     67e:	21 50       	subi	r18, 0x01	; 1
+     680:	80 40       	sbci	r24, 0x00	; 0
+     682:	90 40       	sbci	r25, 0x00	; 0
+     684:	e1 f7       	brne	.-8      	; 0x67e <Set_Time+0x214>
+     686:	00 c0       	rjmp	.+0      	; 0x688 <Set_Time+0x21e>
+     688:	00 00       	nop
+     68a:	84 cf       	rjmp	.-248    	; 0x594 <Set_Time+0x12a>
+	
+	
+	//____________________________________________________________________//
+	//                        set second                                 //
+	S_tens:
+	LCD_cmd(0x01);
+     68c:	81 e0       	ldi	r24, 0x01	; 1
+     68e:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+	
+	displayTime(hour_tens, hour_ones, minute_tens, minute_ones, second_tens, second_ones, am_pm);
+     692:	c0 90 b2 01 	lds	r12, 0x01B2	; 0x8001b2 <am_pm>
+     696:	d0 90 b3 01 	lds	r13, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     69a:	e0 90 b6 01 	lds	r14, 0x01B6	; 0x8001b6 <second_ones>
+     69e:	f0 90 b7 01 	lds	r15, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     6a2:	00 91 b4 01 	lds	r16, 0x01B4	; 0x8001b4 <second_tens>
+     6a6:	10 91 b5 01 	lds	r17, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     6aa:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     6ae:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     6b2:	40 91 b8 01 	lds	r20, 0x01B8	; 0x8001b8 <minute_tens>
+     6b6:	50 91 b9 01 	lds	r21, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     6ba:	60 91 be 01 	lds	r22, 0x01BE	; 0x8001be <hour_ones>
+     6be:	70 91 bf 01 	lds	r23, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     6c2:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     6c6:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     6ca:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+	key = keypad_get_value();
+     6ce:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+	if (key>='0' && key<='5'){// second == 00:00:..0
+     6d2:	20 ed       	ldi	r18, 0xD0	; 208
+     6d4:	28 0f       	add	r18, r24
+     6d6:	26 30       	cpi	r18, 0x06	; 6
+     6d8:	d0 f5       	brcc	.+116    	; 0x74e <Set_Time+0x2e4>
+		second_tens =(short) key;
+     6da:	99 27       	eor	r25, r25
+     6dc:	90 93 b5 01 	sts	0x01B5, r25	; 0x8001b5 <second_tens+0x1>
+     6e0:	80 93 b4 01 	sts	0x01B4, r24	; 0x8001b4 <second_tens>
+		//reset key
+		key = 0;
+		
+		
+		S_ones:
+		LCD_cmd(0x01);
+     6e4:	81 e0       	ldi	r24, 0x01	; 1
+     6e6:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		
+		displayTime(hour_tens, hour_ones, minute_tens, minute_ones, second_tens, second_ones, am_pm);	
+     6ea:	c0 90 b2 01 	lds	r12, 0x01B2	; 0x8001b2 <am_pm>
+     6ee:	d0 90 b3 01 	lds	r13, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     6f2:	e0 90 b6 01 	lds	r14, 0x01B6	; 0x8001b6 <second_ones>
+     6f6:	f0 90 b7 01 	lds	r15, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     6fa:	00 91 b4 01 	lds	r16, 0x01B4	; 0x8001b4 <second_tens>
+     6fe:	10 91 b5 01 	lds	r17, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     702:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     706:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     70a:	40 91 b8 01 	lds	r20, 0x01B8	; 0x8001b8 <minute_tens>
+     70e:	50 91 b9 01 	lds	r21, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     712:	60 91 be 01 	lds	r22, 0x01BE	; 0x8001be <hour_ones>
+     716:	70 91 bf 01 	lds	r23, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     71a:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     71e:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     722:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+		key = keypad_get_value();
+     726:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+		if (key>='0' && key<='9'){// second == 0..:00:00
+     72a:	20 ed       	ldi	r18, 0xD0	; 208
+     72c:	28 0f       	add	r18, r24
+     72e:	2a 30       	cpi	r18, 0x0A	; 10
+     730:	30 f4       	brcc	.+12     	; 0x73e <Set_Time+0x2d4>
+			second_ones=(short)key;
+     732:	99 27       	eor	r25, r25
+     734:	90 93 b7 01 	sts	0x01B7, r25	; 0x8001b7 <second_ones+0x1>
+     738:	80 93 b6 01 	sts	0x01B6, r24	; 0x8001b6 <second_ones>
+     73c:	10 c0       	rjmp	.+32     	; 0x75e <Set_Time+0x2f4>
+		}
+			
+		else {// if user set char instead of number
+			LCD_cmd(0x01);
+     73e:	81 e0       	ldi	r24, 0x01	; 1
+     740:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			LCD_writeArray("Please Enter correct number to set second!!");
+     744:	87 e2       	ldi	r24, 0x27	; 39
+     746:	91 e0       	ldi	r25, 0x01	; 1
+     748:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+			goto S_ones;
+     74c:	cb cf       	rjmp	.-106    	; 0x6e4 <Set_Time+0x27a>
+		}
+		//_delay_ms(200);
+		key = 0;// reset key
+	}
+	else{//if user enter invalid number in second's tens
+		LCD_cmd(0x01);
+     74e:	81 e0       	ldi	r24, 0x01	; 1
+     750:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		LCD_writeArray("Please Enter 0 to 5  to set second's tens!!");
+     754:	83 e5       	ldi	r24, 0x53	; 83
+     756:	91 e0       	ldi	r25, 0x01	; 1
+     758:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+		goto S_tens;
+     75c:	97 cf       	rjmp	.-210    	; 0x68c <Set_Time+0x222>
+	}
+	
+	//_______________________________________________________________________//
+	//                     Set AM or PM                                     //
+	AM:
+	LCD_cmd(0x01);
+     75e:	81 e0       	ldi	r24, 0x01	; 1
+     760:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+	
+	displayTime(hour_tens, hour_ones, minute_tens, minute_ones, second_tens, second_ones, am_pm);
+     764:	c0 90 b2 01 	lds	r12, 0x01B2	; 0x8001b2 <am_pm>
+     768:	d0 90 b3 01 	lds	r13, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     76c:	e0 90 b6 01 	lds	r14, 0x01B6	; 0x8001b6 <second_ones>
+     770:	f0 90 b7 01 	lds	r15, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     774:	00 91 b4 01 	lds	r16, 0x01B4	; 0x8001b4 <second_tens>
+     778:	10 91 b5 01 	lds	r17, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     77c:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     780:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     784:	40 91 b8 01 	lds	r20, 0x01B8	; 0x8001b8 <minute_tens>
+     788:	50 91 b9 01 	lds	r21, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     78c:	60 91 be 01 	lds	r22, 0x01BE	; 0x8001be <hour_ones>
+     790:	70 91 bf 01 	lds	r23, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     794:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     798:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     79c:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+	key = keypad_get_value();
+     7a0:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+	if (key >= '0' && key <= '1')
+     7a4:	20 ed       	ldi	r18, 0xD0	; 208
+     7a6:	28 0f       	add	r18, r24
+     7a8:	22 30       	cpi	r18, 0x02	; 2
+     7aa:	70 f4       	brcc	.+28     	; 0x7c8 <Set_Time+0x35e>
+	{
+		if(key == '0')
+     7ac:	80 33       	cpi	r24, 0x30	; 48
+     7ae:	31 f4       	brne	.+12     	; 0x7bc <Set_Time+0x352>
+			am_pm = key; //AM
+     7b0:	99 27       	eor	r25, r25
+     7b2:	90 93 b3 01 	sts	0x01B3, r25	; 0x8001b3 <am_pm+0x1>
+     7b6:	80 93 b2 01 	sts	0x01B2, r24	; 0x8001b2 <am_pm>
+     7ba:	1b c0       	rjmp	.+54     	; 0x7f2 <Set_Time+0x388>
+		else
+			am_pm = key; //PM
+     7bc:	99 27       	eor	r25, r25
+     7be:	90 93 b3 01 	sts	0x01B3, r25	; 0x8001b3 <am_pm+0x1>
+     7c2:	80 93 b2 01 	sts	0x01B2, r24	; 0x8001b2 <am_pm>
+     7c6:	15 c0       	rjmp	.+42     	; 0x7f2 <Set_Time+0x388>
+	}
+	else{
+		LCD_cmd(0x01);
+     7c8:	81 e0       	ldi	r24, 0x01	; 1
+     7ca:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		lcd_gotoxy(0,0);
+     7ce:	60 e0       	ldi	r22, 0x00	; 0
+     7d0:	80 e0       	ldi	r24, 0x00	; 0
+     7d2:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <lcd_gotoxy>
+		LCD_writeArray("Please press '0' to AM or '1' to PM");
+     7d6:	8f e7       	ldi	r24, 0x7F	; 127
+     7d8:	91 e0       	ldi	r25, 0x01	; 1
+     7da:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+     7de:	2f ef       	ldi	r18, 0xFF	; 255
+     7e0:	8b e4       	ldi	r24, 0x4B	; 75
+     7e2:	9d e1       	ldi	r25, 0x1D	; 29
+     7e4:	21 50       	subi	r18, 0x01	; 1
+     7e6:	80 40       	sbci	r24, 0x00	; 0
+     7e8:	90 40       	sbci	r25, 0x00	; 0
+     7ea:	e1 f7       	brne	.-8      	; 0x7e4 <Set_Time+0x37a>
+     7ec:	00 c0       	rjmp	.+0      	; 0x7ee <Set_Time+0x384>
+     7ee:	00 00       	nop
+     7f0:	b6 cf       	rjmp	.-148    	; 0x75e <Set_Time+0x2f4>
+		_delay_ms(600);
+		goto AM;
+	}
+	displayTime(hour_tens, hour_ones, minute_tens, minute_ones, second_tens, second_ones, am_pm);
+     7f2:	c0 90 b2 01 	lds	r12, 0x01B2	; 0x8001b2 <am_pm>
+     7f6:	d0 90 b3 01 	lds	r13, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     7fa:	e0 90 b6 01 	lds	r14, 0x01B6	; 0x8001b6 <second_ones>
+     7fe:	f0 90 b7 01 	lds	r15, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     802:	00 91 b4 01 	lds	r16, 0x01B4	; 0x8001b4 <second_tens>
+     806:	10 91 b5 01 	lds	r17, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     80a:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     80e:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     812:	40 91 b8 01 	lds	r20, 0x01B8	; 0x8001b8 <minute_tens>
+     816:	50 91 b9 01 	lds	r21, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     81a:	60 91 be 01 	lds	r22, 0x01BE	; 0x8001be <hour_ones>
+     81e:	70 91 bf 01 	lds	r23, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     822:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     826:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     82a:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+	//SET_BIT(TIMSK, TOIE0);
+	//SET_BIT(SREG, 7);
+}
+     82e:	1f 91       	pop	r17
+     830:	0f 91       	pop	r16
+     832:	ff 90       	pop	r15
+     834:	ef 90       	pop	r14
+     836:	df 90       	pop	r13
+     838:	cf 90       	pop	r12
+     83a:	08 95       	ret
+
+0000083c <Set_Alarm_Time>:
+
+void Set_Alarm_Time(){
+     83c:	cf 92       	push	r12
+     83e:	df 92       	push	r13
+     840:	ef 92       	push	r14
+     842:	ff 92       	push	r15
+     844:	0f 93       	push	r16
+     846:	1f 93       	push	r17
+	alarm_active = 1;
+     848:	81 e0       	ldi	r24, 0x01	; 1
+     84a:	90 e0       	ldi	r25, 0x00	; 0
+     84c:	90 93 b1 01 	sts	0x01B1, r25	; 0x8001b1 <alarm_active+0x1>
+     850:	80 93 b0 01 	sts	0x01B0, r24	; 0x8001b0 <alarm_active>
+		//    reset time    //
+		alarm_am_pm = '0';
+     854:	80 e3       	ldi	r24, 0x30	; 48
+     856:	90 e0       	ldi	r25, 0x00	; 0
+     858:	90 93 c1 01 	sts	0x01C1, r25	; 0x8001c1 <alarm_am_pm+0x1>
+     85c:	80 93 c0 01 	sts	0x01C0, r24	; 0x8001c0 <alarm_am_pm>
+		alarm_hour_1 = '0';
+     860:	90 93 cd 01 	sts	0x01CD, r25	; 0x8001cd <alarm_hour_1+0x1>
+     864:	80 93 cc 01 	sts	0x01CC, r24	; 0x8001cc <alarm_hour_1>
+		alarm_hour_10 = '0';
+     868:	90 93 cb 01 	sts	0x01CB, r25	; 0x8001cb <alarm_hour_10+0x1>
+     86c:	80 93 ca 01 	sts	0x01CA, r24	; 0x8001ca <alarm_hour_10>
+		
+		alarm_minute_1 = '0';
+     870:	90 93 c9 01 	sts	0x01C9, r25	; 0x8001c9 <alarm_minute_1+0x1>
+     874:	80 93 c8 01 	sts	0x01C8, r24	; 0x8001c8 <alarm_minute_1>
+		alarm_minute_10 = '0';
+     878:	90 93 c7 01 	sts	0x01C7, r25	; 0x8001c7 <alarm_minute_10+0x1>
+     87c:	80 93 c6 01 	sts	0x01C6, r24	; 0x8001c6 <alarm_minute_10>
+		
+		alarm_second_1 = '0';
+     880:	90 93 c5 01 	sts	0x01C5, r25	; 0x8001c5 <alarm_second_1+0x1>
+     884:	80 93 c4 01 	sts	0x01C4, r24	; 0x8001c4 <alarm_second_1>
+		alarm_second_10 = '0';
+     888:	90 93 c3 01 	sts	0x01C3, r25	; 0x8001c3 <alarm_second_10+0x1>
+     88c:	80 93 c2 01 	sts	0x01C2, r24	; 0x8001c2 <alarm_second_10>
+
+		unsigned char key = 0;
+		//_____________________________________________________________//
+		//                      Set hour                              //
+		H_tens:
+		LCD_cmd(0x01);
+     890:	81 e0       	ldi	r24, 0x01	; 1
+     892:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		
+		
+		key = keypad_get_value();
+     896:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+		if (key>='0' && key<='1')
+     89a:	20 ed       	ldi	r18, 0xD0	; 208
+     89c:	28 0f       	add	r18, r24
+     89e:	22 30       	cpi	r18, 0x02	; 2
+     8a0:	08 f0       	brcs	.+2      	; 0x8a4 <__stack+0x45>
+     8a2:	52 c0       	rjmp	.+164    	; 0x948 <__stack+0xe9>
+		{
+			alarm_hour_10 = key;
+     8a4:	99 27       	eor	r25, r25
+     8a6:	90 93 cb 01 	sts	0x01CB, r25	; 0x8001cb <alarm_hour_10+0x1>
+     8aa:	80 93 ca 01 	sts	0x01CA, r24	; 0x8001ca <alarm_hour_10>
+			
+			key = 0; //reset key
+			
+			H_ones:
+			LCD_cmd(0x01); //Clear Screen
+     8ae:	81 e0       	ldi	r24, 0x01	; 1
+     8b0:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			
+
+			displayTime(alarm_hour_10, alarm_hour_1, alarm_minute_10, alarm_minute_1, alarm_second_10, alarm_second_1, alarm_am_pm);
+     8b4:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     8b8:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     8bc:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     8c0:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     8c4:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     8c8:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     8cc:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     8d0:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     8d4:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     8d8:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     8dc:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     8e0:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     8e4:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     8e8:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     8ec:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+			
+			key = keypad_get_value();
+     8f0:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+			if (key>='1' && key<='9' && alarm_hour_10=='0'){// hour == 0..:00:00
+     8f4:	2f ec       	ldi	r18, 0xCF	; 207
+     8f6:	28 0f       	add	r18, r24
+     8f8:	29 30       	cpi	r18, 0x09	; 9
+     8fa:	68 f4       	brcc	.+26     	; 0x916 <__stack+0xb7>
+     8fc:	20 91 ca 01 	lds	r18, 0x01CA	; 0x8001ca <alarm_hour_10>
+     900:	30 91 cb 01 	lds	r19, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     904:	20 33       	cpi	r18, 0x30	; 48
+     906:	31 05       	cpc	r19, r1
+     908:	31 f4       	brne	.+12     	; 0x916 <__stack+0xb7>
+				alarm_hour_1=key;
+     90a:	99 27       	eor	r25, r25
+     90c:	90 93 cd 01 	sts	0x01CD, r25	; 0x8001cd <alarm_hour_1+0x1>
+     910:	80 93 cc 01 	sts	0x01CC, r24	; 0x8001cc <alarm_hour_1>
+     914:	21 c0       	rjmp	.+66     	; 0x958 <__stack+0xf9>
+			}
+			
+			else if (key>='0' && key<='2' && alarm_hour_10=='1'){// hour == 1..:00:00
+     916:	20 ed       	ldi	r18, 0xD0	; 208
+     918:	28 0f       	add	r18, r24
+     91a:	23 30       	cpi	r18, 0x03	; 3
+     91c:	68 f4       	brcc	.+26     	; 0x938 <__stack+0xd9>
+     91e:	20 91 ca 01 	lds	r18, 0x01CA	; 0x8001ca <alarm_hour_10>
+     922:	30 91 cb 01 	lds	r19, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     926:	21 33       	cpi	r18, 0x31	; 49
+     928:	31 05       	cpc	r19, r1
+     92a:	31 f4       	brne	.+12     	; 0x938 <__stack+0xd9>
+				alarm_hour_1=key;
+     92c:	99 27       	eor	r25, r25
+     92e:	90 93 cd 01 	sts	0x01CD, r25	; 0x8001cd <alarm_hour_1+0x1>
+     932:	80 93 cc 01 	sts	0x01CC, r24	; 0x8001cc <alarm_hour_1>
+     936:	10 c0       	rjmp	.+32     	; 0x958 <__stack+0xf9>
+			}
+			
+			else {// if user set char instead of number
+				LCD_cmd(0x01);
+     938:	81 e0       	ldi	r24, 0x01	; 1
+     93a:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+				LCD_writeArray("Please Enter correct number to set hour!!");
+     93e:	8b e7       	ldi	r24, 0x7B	; 123
+     940:	90 e0       	ldi	r25, 0x00	; 0
+     942:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+				goto H_ones;
+     946:	b3 cf       	rjmp	.-154    	; 0x8ae <__stack+0x4f>
+			}
+
+			key = 0;// reset key
+		}
+		else{//if user enter invalid number in hour's tens
+			LCD_cmd(0x01);
+     948:	81 e0       	ldi	r24, 0x01	; 1
+     94a:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			LCD_writeArray("Please Enter 0 or 1  to set hour's tens!!");
+     94e:	85 ea       	ldi	r24, 0xA5	; 165
+     950:	90 e0       	ldi	r25, 0x00	; 0
+     952:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+			goto H_tens;
+     956:	9c cf       	rjmp	.-200    	; 0x890 <__stack+0x31>
+		}
+		//___________________________________________________________________//
+		//                      Set minute                                  //
+		M_tens:
+		LCD_cmd(0x01);
+     958:	81 e0       	ldi	r24, 0x01	; 1
+     95a:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		
+		displayTime(alarm_hour_10, alarm_hour_1, alarm_minute_10, alarm_minute_1, alarm_second_10, alarm_second_1, alarm_am_pm);
+     95e:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     962:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     966:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     96a:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     96e:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     972:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     976:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     97a:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     97e:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     982:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     986:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     98a:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     98e:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     992:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     996:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+		key = keypad_get_value();
+     99a:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+		if (key>='0' && key<='5'){// minute == 00:..0:00
+     99e:	20 ed       	ldi	r18, 0xD0	; 208
+     9a0:	28 0f       	add	r18, r24
+     9a2:	26 30       	cpi	r18, 0x06	; 6
+     9a4:	d0 f5       	brcc	.+116    	; 0xa1a <__stack+0x1bb>
+			alarm_minute_10 = key;
+     9a6:	99 27       	eor	r25, r25
+     9a8:	90 93 c7 01 	sts	0x01C7, r25	; 0x8001c7 <alarm_minute_10+0x1>
+     9ac:	80 93 c6 01 	sts	0x01C6, r24	; 0x8001c6 <alarm_minute_10>
+			
+			//reset key
+			key = 0;
+			
+			M_ones:
+			LCD_cmd(0x01);
+     9b0:	81 e0       	ldi	r24, 0x01	; 1
+     9b2:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			
+
+			displayTime(alarm_hour_10, alarm_hour_1, alarm_minute_10, alarm_minute_1, alarm_second_10, alarm_second_1, alarm_am_pm);
+     9b6:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     9ba:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     9be:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     9c2:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     9c6:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     9ca:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     9ce:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     9d2:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     9d6:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     9da:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     9de:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     9e2:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     9e6:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     9ea:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     9ee:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+			
+			key = keypad_get_value();
+     9f2:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+			if (key>='0' && key<='9'){// minute == 00:0..:00
+     9f6:	20 ed       	ldi	r18, 0xD0	; 208
+     9f8:	28 0f       	add	r18, r24
+     9fa:	2a 30       	cpi	r18, 0x0A	; 10
+     9fc:	30 f4       	brcc	.+12     	; 0xa0a <__stack+0x1ab>
+				alarm_minute_1=key;
+     9fe:	99 27       	eor	r25, r25
+     a00:	90 93 c9 01 	sts	0x01C9, r25	; 0x8001c9 <alarm_minute_1+0x1>
+     a04:	80 93 c8 01 	sts	0x01C8, r24	; 0x8001c8 <alarm_minute_1>
+     a08:	10 c0       	rjmp	.+32     	; 0xa2a <__stack+0x1cb>
+			}
+			
+			else {// if user set char instead of number
+				LCD_cmd(0x01);
+     a0a:	81 e0       	ldi	r24, 0x01	; 1
+     a0c:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+				LCD_writeArray("Please Enter correct number to set minute!!");
+     a10:	8f ec       	ldi	r24, 0xCF	; 207
+     a12:	90 e0       	ldi	r25, 0x00	; 0
+     a14:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+				goto M_ones;
+     a18:	cb cf       	rjmp	.-106    	; 0x9b0 <__stack+0x151>
+			}
+			
+			key = 0;// reset key
+		}
+		else{//if user enter invalid number in minute's tens
+			LCD_cmd(0x01);
+     a1a:	81 e0       	ldi	r24, 0x01	; 1
+     a1c:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			LCD_writeArray("Please Enter 0 to 5  to set minute's tens!!");
+     a20:	8b ef       	ldi	r24, 0xFB	; 251
+     a22:	90 e0       	ldi	r25, 0x00	; 0
+     a24:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+			goto M_tens;
+     a28:	97 cf       	rjmp	.-210    	; 0x958 <__stack+0xf9>
+		}
+		
+		//____________________________________________________________________//
+		//                        set second                                 //
+			S_tens:
+			LCD_cmd(0x01);
+     a2a:	81 e0       	ldi	r24, 0x01	; 1
+     a2c:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			
+			displayTime(alarm_hour_10, alarm_hour_1, alarm_minute_10, alarm_minute_1, alarm_second_10, alarm_second_1, alarm_am_pm);
+     a30:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     a34:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     a38:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     a3c:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     a40:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     a44:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     a48:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     a4c:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     a50:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     a54:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     a58:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     a5c:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     a60:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     a64:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     a68:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+		key = keypad_get_value();
+     a6c:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+     a70:	8c 01       	movw	r16, r24
+		if (key>='0' && key<='5'){// second == 00:00:..0
+     a72:	80 ed       	ldi	r24, 0xD0	; 208
+     a74:	80 0f       	add	r24, r16
+     a76:	86 30       	cpi	r24, 0x06	; 6
+     a78:	e8 f5       	brcc	.+122    	; 0xaf4 <__stack+0x295>
+			LCD_cmd(0x01);
+     a7a:	81 e0       	ldi	r24, 0x01	; 1
+     a7c:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			alarm_second_10 = key;
+     a80:	11 27       	eor	r17, r17
+     a82:	10 93 c3 01 	sts	0x01C3, r17	; 0x8001c3 <alarm_second_10+0x1>
+     a86:	00 93 c2 01 	sts	0x01C2, r16	; 0x8001c2 <alarm_second_10>
+
+			//reset key
+			key = 0;
+			
+			S_ones:
+			LCD_cmd(0x01);
+     a8a:	81 e0       	ldi	r24, 0x01	; 1
+     a8c:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			
+
+			displayTime(alarm_hour_10, alarm_hour_1, alarm_minute_10, alarm_minute_1, alarm_second_10, alarm_second_1, alarm_am_pm);
+     a90:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     a94:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     a98:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     a9c:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     aa0:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     aa4:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     aa8:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     aac:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     ab0:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     ab4:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     ab8:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     abc:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     ac0:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     ac4:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     ac8:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+			
+			key = keypad_get_value();
+     acc:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+			if (key>='0' && key<='9'){// second == 00:00:0..
+     ad0:	20 ed       	ldi	r18, 0xD0	; 208
+     ad2:	28 0f       	add	r18, r24
+     ad4:	2a 30       	cpi	r18, 0x0A	; 10
+     ad6:	30 f4       	brcc	.+12     	; 0xae4 <__stack+0x285>
+				alarm_second_1=key;
+     ad8:	99 27       	eor	r25, r25
+     ada:	90 93 c5 01 	sts	0x01C5, r25	; 0x8001c5 <alarm_second_1+0x1>
+     ade:	80 93 c4 01 	sts	0x01C4, r24	; 0x8001c4 <alarm_second_1>
+     ae2:	10 c0       	rjmp	.+32     	; 0xb04 <__stack+0x2a5>
+			}
+			
+			else {// if user set char instead of number
+				LCD_cmd(0x01);
+     ae4:	81 e0       	ldi	r24, 0x01	; 1
+     ae6:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+				LCD_writeArray("Please Enter correct number to set second!!");
+     aea:	87 e2       	ldi	r24, 0x27	; 39
+     aec:	91 e0       	ldi	r25, 0x01	; 1
+     aee:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+				goto S_ones;
+     af2:	cb cf       	rjmp	.-106    	; 0xa8a <__stack+0x22b>
+			}
+
+			key = 0;// reset key
+		}
+		else{//if user enter invalid number in second's tens
+			LCD_cmd(0x01);
+     af4:	81 e0       	ldi	r24, 0x01	; 1
+     af6:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			LCD_writeArray("Please Enter 0 to 5  to set second's tens!!");
+     afa:	83 e5       	ldi	r24, 0x53	; 83
+     afc:	91 e0       	ldi	r25, 0x01	; 1
+     afe:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+			goto S_tens;
+     b02:	93 cf       	rjmp	.-218    	; 0xa2a <__stack+0x1cb>
+		}
+		//_______________________________________________________________________//
+		//                     Set AM or PM                                     //
+		AM:
+		LCD_cmd(0x01);
+     b04:	81 e0       	ldi	r24, 0x01	; 1
+     b06:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+		
+		
+		displayTime(alarm_hour_10, alarm_hour_1, alarm_minute_10, alarm_minute_1, alarm_second_10, alarm_second_1, alarm_am_pm);
+     b0a:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     b0e:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     b12:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     b16:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     b1a:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     b1e:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     b22:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     b26:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     b2a:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     b2e:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     b32:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     b36:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     b3a:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     b3e:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     b42:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+		
+		key = keypad_get_value();
+     b46:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+		if (key >= '0' && key <= '1')
+     b4a:	20 ed       	ldi	r18, 0xD0	; 208
+     b4c:	28 0f       	add	r18, r24
+     b4e:	22 30       	cpi	r18, 0x02	; 2
+     b50:	70 f4       	brcc	.+28     	; 0xb6e <__stack+0x30f>
+		{
+			if(key == '0')
+     b52:	80 33       	cpi	r24, 0x30	; 48
+     b54:	31 f4       	brne	.+12     	; 0xb62 <__stack+0x303>
+			alarm_am_pm = key; //AM
+     b56:	99 27       	eor	r25, r25
+     b58:	90 93 c1 01 	sts	0x01C1, r25	; 0x8001c1 <alarm_am_pm+0x1>
+     b5c:	80 93 c0 01 	sts	0x01C0, r24	; 0x8001c0 <alarm_am_pm>
+     b60:	12 c0       	rjmp	.+36     	; 0xb86 <__stack+0x327>
+			else
+			alarm_am_pm = key; //PM
+     b62:	99 27       	eor	r25, r25
+     b64:	90 93 c1 01 	sts	0x01C1, r25	; 0x8001c1 <alarm_am_pm+0x1>
+     b68:	80 93 c0 01 	sts	0x01C0, r24	; 0x8001c0 <alarm_am_pm>
+     b6c:	0c c0       	rjmp	.+24     	; 0xb86 <__stack+0x327>
+		}
+		else{
+			LCD_cmd(0x01);
+     b6e:	81 e0       	ldi	r24, 0x01	; 1
+     b70:	0e 94 10 01 	call	0x220	; 0x220 <LCD_cmd>
+			lcd_gotoxy(0,0);
+     b74:	60 e0       	ldi	r22, 0x00	; 0
+     b76:	80 e0       	ldi	r24, 0x00	; 0
+     b78:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <lcd_gotoxy>
+			LCD_writeArray("Please press '0' to AM or '1' to PM");
+     b7c:	8f e7       	ldi	r24, 0x7F	; 127
+     b7e:	91 e0       	ldi	r25, 0x01	; 1
+     b80:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+			goto AM;
+     b84:	bf cf       	rjmp	.-130    	; 0xb04 <__stack+0x2a5>
+		}
+		displayTime(alarm_hour_10, alarm_hour_1, alarm_minute_10, alarm_minute_1, alarm_second_10, alarm_second_1, alarm_am_pm);
+     b86:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     b8a:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     b8e:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     b92:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     b96:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     b9a:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     b9e:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     ba2:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     ba6:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     baa:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     bae:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     bb2:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     bb6:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     bba:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     bbe:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+	
+}
+     bc2:	1f 91       	pop	r17
+     bc4:	0f 91       	pop	r16
+     bc6:	ff 90       	pop	r15
+     bc8:	ef 90       	pop	r14
+     bca:	df 90       	pop	r13
+     bcc:	cf 90       	pop	r12
+     bce:	08 95       	ret
+
+00000bd0 <Time>:
+
+void Time(short Alarm_Mode){
+     bd0:	cf 92       	push	r12
+     bd2:	df 92       	push	r13
+     bd4:	ef 92       	push	r14
+     bd6:	ff 92       	push	r15
+     bd8:	0f 93       	push	r16
+     bda:	1f 93       	push	r17
+	if (Alarm_Mode == 1){
+     bdc:	01 97       	sbiw	r24, 0x01	; 1
+     bde:	f9 f4       	brne	.+62     	; 0xc1e <Time+0x4e>
+		displayTime(alarm_hour_10, alarm_hour_1, alarm_minute_10, alarm_minute_1, alarm_second_10, alarm_second_1, alarm_am_pm);
+     be0:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     be4:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     be8:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     bec:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     bf0:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     bf4:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     bf8:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     bfc:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     c00:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     c04:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     c08:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     c0c:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     c10:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     c14:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     c18:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+     c1c:	1e c0       	rjmp	.+60     	; 0xc5a <Time+0x8a>
+	}
+	else{
+		displayTime(hour_tens, hour_ones, minute_tens, minute_ones, second_tens, second_ones, am_pm);
+     c1e:	c0 90 b2 01 	lds	r12, 0x01B2	; 0x8001b2 <am_pm>
+     c22:	d0 90 b3 01 	lds	r13, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     c26:	e0 90 b6 01 	lds	r14, 0x01B6	; 0x8001b6 <second_ones>
+     c2a:	f0 90 b7 01 	lds	r15, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     c2e:	00 91 b4 01 	lds	r16, 0x01B4	; 0x8001b4 <second_tens>
+     c32:	10 91 b5 01 	lds	r17, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     c36:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     c3a:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     c3e:	40 91 b8 01 	lds	r20, 0x01B8	; 0x8001b8 <minute_tens>
+     c42:	50 91 b9 01 	lds	r21, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     c46:	60 91 be 01 	lds	r22, 0x01BE	; 0x8001be <hour_ones>
+     c4a:	70 91 bf 01 	lds	r23, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     c4e:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     c52:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     c56:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+	}
+	
+}
+     c5a:	1f 91       	pop	r17
+     c5c:	0f 91       	pop	r16
+     c5e:	ff 90       	pop	r15
+     c60:	ef 90       	pop	r14
+     c62:	df 90       	pop	r13
+     c64:	cf 90       	pop	r12
+     c66:	08 95       	ret
+
+00000c68 <Update_clock>:
+volatile unsigned short alarm_active = 0;
+short Alarm_Mode = 0; //to display alarm or current time
+
+void Update_clock(){
+	
+	second_ones++;
+     c68:	80 91 b6 01 	lds	r24, 0x01B6	; 0x8001b6 <second_ones>
+     c6c:	90 91 b7 01 	lds	r25, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     c70:	01 96       	adiw	r24, 0x01	; 1
+     c72:	90 93 b7 01 	sts	0x01B7, r25	; 0x8001b7 <second_ones+0x1>
+     c76:	80 93 b6 01 	sts	0x01B6, r24	; 0x8001b6 <second_ones>
+	if (second_ones > '9')
+     c7a:	80 91 b6 01 	lds	r24, 0x01B6	; 0x8001b6 <second_ones>
+     c7e:	90 91 b7 01 	lds	r25, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     c82:	ca 97       	sbiw	r24, 0x3a	; 58
+     c84:	08 f4       	brcc	.+2      	; 0xc88 <Update_clock+0x20>
+     c86:	a2 c0       	rjmp	.+324    	; 0xdcc <Update_clock+0x164>
+	{
+		second_ones = '0';
+     c88:	80 e3       	ldi	r24, 0x30	; 48
+     c8a:	90 e0       	ldi	r25, 0x00	; 0
+     c8c:	90 93 b7 01 	sts	0x01B7, r25	; 0x8001b7 <second_ones+0x1>
+     c90:	80 93 b6 01 	sts	0x01B6, r24	; 0x8001b6 <second_ones>
+		second_tens++;
+     c94:	80 91 b4 01 	lds	r24, 0x01B4	; 0x8001b4 <second_tens>
+     c98:	90 91 b5 01 	lds	r25, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     c9c:	01 96       	adiw	r24, 0x01	; 1
+     c9e:	90 93 b5 01 	sts	0x01B5, r25	; 0x8001b5 <second_tens+0x1>
+     ca2:	80 93 b4 01 	sts	0x01B4, r24	; 0x8001b4 <second_tens>
+		if (second_tens > '5')
+     ca6:	80 91 b4 01 	lds	r24, 0x01B4	; 0x8001b4 <second_tens>
+     caa:	90 91 b5 01 	lds	r25, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     cae:	c6 97       	sbiw	r24, 0x36	; 54
+     cb0:	08 f4       	brcc	.+2      	; 0xcb4 <Update_clock+0x4c>
+     cb2:	8c c0       	rjmp	.+280    	; 0xdcc <Update_clock+0x164>
+		{
+			second_tens='0';
+     cb4:	80 e3       	ldi	r24, 0x30	; 48
+     cb6:	90 e0       	ldi	r25, 0x00	; 0
+     cb8:	90 93 b5 01 	sts	0x01B5, r25	; 0x8001b5 <second_tens+0x1>
+     cbc:	80 93 b4 01 	sts	0x01B4, r24	; 0x8001b4 <second_tens>
+			minute_ones++;
+     cc0:	80 91 ba 01 	lds	r24, 0x01BA	; 0x8001ba <minute_ones>
+     cc4:	90 91 bb 01 	lds	r25, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     cc8:	01 96       	adiw	r24, 0x01	; 1
+     cca:	90 93 bb 01 	sts	0x01BB, r25	; 0x8001bb <minute_ones+0x1>
+     cce:	80 93 ba 01 	sts	0x01BA, r24	; 0x8001ba <minute_ones>
+			if (minute_ones > '9')
+     cd2:	80 91 ba 01 	lds	r24, 0x01BA	; 0x8001ba <minute_ones>
+     cd6:	90 91 bb 01 	lds	r25, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     cda:	ca 97       	sbiw	r24, 0x3a	; 58
+     cdc:	08 f4       	brcc	.+2      	; 0xce0 <Update_clock+0x78>
+     cde:	76 c0       	rjmp	.+236    	; 0xdcc <Update_clock+0x164>
+			{
+				minute_ones = '0';
+     ce0:	80 e3       	ldi	r24, 0x30	; 48
+     ce2:	90 e0       	ldi	r25, 0x00	; 0
+     ce4:	90 93 bb 01 	sts	0x01BB, r25	; 0x8001bb <minute_ones+0x1>
+     ce8:	80 93 ba 01 	sts	0x01BA, r24	; 0x8001ba <minute_ones>
+				minute_tens++;
+     cec:	80 91 b8 01 	lds	r24, 0x01B8	; 0x8001b8 <minute_tens>
+     cf0:	90 91 b9 01 	lds	r25, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     cf4:	01 96       	adiw	r24, 0x01	; 1
+     cf6:	90 93 b9 01 	sts	0x01B9, r25	; 0x8001b9 <minute_tens+0x1>
+     cfa:	80 93 b8 01 	sts	0x01B8, r24	; 0x8001b8 <minute_tens>
+				if(minute_tens>'5'){
+     cfe:	80 91 b8 01 	lds	r24, 0x01B8	; 0x8001b8 <minute_tens>
+     d02:	90 91 b9 01 	lds	r25, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     d06:	c6 97       	sbiw	r24, 0x36	; 54
+     d08:	08 f4       	brcc	.+2      	; 0xd0c <Update_clock+0xa4>
+     d0a:	60 c0       	rjmp	.+192    	; 0xdcc <Update_clock+0x164>
+					minute_tens='0';
+     d0c:	80 e3       	ldi	r24, 0x30	; 48
+     d0e:	90 e0       	ldi	r25, 0x00	; 0
+     d10:	90 93 b9 01 	sts	0x01B9, r25	; 0x8001b9 <minute_tens+0x1>
+     d14:	80 93 b8 01 	sts	0x01B8, r24	; 0x8001b8 <minute_tens>
+					hour_ones++;
+     d18:	80 91 be 01 	lds	r24, 0x01BE	; 0x8001be <hour_ones>
+     d1c:	90 91 bf 01 	lds	r25, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     d20:	01 96       	adiw	r24, 0x01	; 1
+     d22:	90 93 bf 01 	sts	0x01BF, r25	; 0x8001bf <hour_ones+0x1>
+     d26:	80 93 be 01 	sts	0x01BE, r24	; 0x8001be <hour_ones>
+					if (hour_ones > '9' && hour_tens == '0'){
+     d2a:	80 91 be 01 	lds	r24, 0x01BE	; 0x8001be <hour_ones>
+     d2e:	90 91 bf 01 	lds	r25, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     d32:	ca 97       	sbiw	r24, 0x3a	; 58
+     d34:	98 f0       	brcs	.+38     	; 0xd5c <Update_clock+0xf4>
+     d36:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     d3a:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     d3e:	c0 97       	sbiw	r24, 0x30	; 48
+     d40:	69 f4       	brne	.+26     	; 0xd5c <Update_clock+0xf4>
+						hour_ones = '0';
+     d42:	80 e3       	ldi	r24, 0x30	; 48
+     d44:	90 e0       	ldi	r25, 0x00	; 0
+     d46:	90 93 bf 01 	sts	0x01BF, r25	; 0x8001bf <hour_ones+0x1>
+     d4a:	80 93 be 01 	sts	0x01BE, r24	; 0x8001be <hour_ones>
+						hour_tens = '1';
+     d4e:	81 e3       	ldi	r24, 0x31	; 49
+     d50:	90 e0       	ldi	r25, 0x00	; 0
+     d52:	90 93 bd 01 	sts	0x01BD, r25	; 0x8001bd <hour_tens+0x1>
+     d56:	80 93 bc 01 	sts	0x01BC, r24	; 0x8001bc <hour_tens>
+     d5a:	38 c0       	rjmp	.+112    	; 0xdcc <Update_clock+0x164>
+						}
+					else if (hour_tens == '1' && hour_ones == '2')
+     d5c:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     d60:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     d64:	c1 97       	sbiw	r24, 0x31	; 49
+     d66:	d1 f4       	brne	.+52     	; 0xd9c <Update_clock+0x134>
+     d68:	80 91 be 01 	lds	r24, 0x01BE	; 0x8001be <hour_ones>
+     d6c:	90 91 bf 01 	lds	r25, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     d70:	c2 97       	sbiw	r24, 0x32	; 50
+     d72:	a1 f4       	brne	.+40     	; 0xd9c <Update_clock+0x134>
+					{
+						if (am_pm == '0')
+     d74:	80 91 b2 01 	lds	r24, 0x01B2	; 0x8001b2 <am_pm>
+     d78:	90 91 b3 01 	lds	r25, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     d7c:	c0 97       	sbiw	r24, 0x30	; 48
+     d7e:	39 f4       	brne	.+14     	; 0xd8e <Update_clock+0x126>
+						{
+							am_pm = '1';
+     d80:	81 e3       	ldi	r24, 0x31	; 49
+     d82:	90 e0       	ldi	r25, 0x00	; 0
+     d84:	90 93 b3 01 	sts	0x01B3, r25	; 0x8001b3 <am_pm+0x1>
+     d88:	80 93 b2 01 	sts	0x01B2, r24	; 0x8001b2 <am_pm>
+     d8c:	1f c0       	rjmp	.+62     	; 0xdcc <Update_clock+0x164>
+						}
+						else am_pm = '0';
+     d8e:	80 e3       	ldi	r24, 0x30	; 48
+     d90:	90 e0       	ldi	r25, 0x00	; 0
+     d92:	90 93 b3 01 	sts	0x01B3, r25	; 0x8001b3 <am_pm+0x1>
+     d96:	80 93 b2 01 	sts	0x01B2, r24	; 0x8001b2 <am_pm>
+     d9a:	18 c0       	rjmp	.+48     	; 0xdcc <Update_clock+0x164>
+					}
+					else if (hour_ones > '2' && hour_tens == '1')
+     d9c:	80 91 be 01 	lds	r24, 0x01BE	; 0x8001be <hour_ones>
+     da0:	90 91 bf 01 	lds	r25, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     da4:	c3 97       	sbiw	r24, 0x33	; 51
+     da6:	90 f0       	brcs	.+36     	; 0xdcc <Update_clock+0x164>
+     da8:	80 91 bc 01 	lds	r24, 0x01BC	; 0x8001bc <hour_tens>
+     dac:	90 91 bd 01 	lds	r25, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     db0:	c1 97       	sbiw	r24, 0x31	; 49
+     db2:	61 f4       	brne	.+24     	; 0xdcc <Update_clock+0x164>
+					{
+						hour_ones = '1';
+     db4:	81 e3       	ldi	r24, 0x31	; 49
+     db6:	90 e0       	ldi	r25, 0x00	; 0
+     db8:	90 93 bf 01 	sts	0x01BF, r25	; 0x8001bf <hour_ones+0x1>
+     dbc:	80 93 be 01 	sts	0x01BE, r24	; 0x8001be <hour_ones>
+						hour_tens = '0';
+     dc0:	80 e3       	ldi	r24, 0x30	; 48
+     dc2:	90 e0       	ldi	r25, 0x00	; 0
+     dc4:	90 93 bd 01 	sts	0x01BD, r25	; 0x8001bd <hour_tens+0x1>
+     dc8:	80 93 bc 01 	sts	0x01BC, r24	; 0x8001bc <hour_tens>
+					
+				}
+			}
+		}
+	}
+	Time(Alarm_Mode);
+     dcc:	80 91 ae 01 	lds	r24, 0x01AE	; 0x8001ae <__data_end>
+     dd0:	90 91 af 01 	lds	r25, 0x01AF	; 0x8001af <__data_end+0x1>
+     dd4:	0e 94 e8 05 	call	0xbd0	; 0xbd0 <Time>
+	
+	// Check if alarm time is reached//
+	if (alarm_active && hour_ones == alarm_hour_1 && minute_ones == alarm_minute_1 && second_ones == alarm_second_1)
+     dd8:	80 91 b0 01 	lds	r24, 0x01B0	; 0x8001b0 <alarm_active>
+     ddc:	90 91 b1 01 	lds	r25, 0x01B1	; 0x8001b1 <alarm_active+0x1>
+     de0:	89 2b       	or	r24, r25
+     de2:	09 f4       	brne	.+2      	; 0xde6 <Update_clock+0x17e>
+     de4:	52 c0       	rjmp	.+164    	; 0xe8a <Update_clock+0x222>
+     de6:	20 91 be 01 	lds	r18, 0x01BE	; 0x8001be <hour_ones>
+     dea:	30 91 bf 01 	lds	r19, 0x01BF	; 0x8001bf <hour_ones+0x1>
+     dee:	80 91 cc 01 	lds	r24, 0x01CC	; 0x8001cc <alarm_hour_1>
+     df2:	90 91 cd 01 	lds	r25, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     df6:	28 17       	cp	r18, r24
+     df8:	39 07       	cpc	r19, r25
+     dfa:	09 f0       	breq	.+2      	; 0xdfe <Update_clock+0x196>
+     dfc:	46 c0       	rjmp	.+140    	; 0xe8a <Update_clock+0x222>
+     dfe:	20 91 ba 01 	lds	r18, 0x01BA	; 0x8001ba <minute_ones>
+     e02:	30 91 bb 01 	lds	r19, 0x01BB	; 0x8001bb <minute_ones+0x1>
+     e06:	80 91 c8 01 	lds	r24, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     e0a:	90 91 c9 01 	lds	r25, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     e0e:	28 17       	cp	r18, r24
+     e10:	39 07       	cpc	r19, r25
+     e12:	d9 f5       	brne	.+118    	; 0xe8a <Update_clock+0x222>
+     e14:	20 91 b6 01 	lds	r18, 0x01B6	; 0x8001b6 <second_ones>
+     e18:	30 91 b7 01 	lds	r19, 0x01B7	; 0x8001b7 <second_ones+0x1>
+     e1c:	80 91 c4 01 	lds	r24, 0x01C4	; 0x8001c4 <alarm_second_1>
+     e20:	90 91 c5 01 	lds	r25, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     e24:	28 17       	cp	r18, r24
+     e26:	39 07       	cpc	r19, r25
+     e28:	81 f5       	brne	.+96     	; 0xe8a <Update_clock+0x222>
+	{	
+		if (hour_tens == alarm_hour_10 && minute_tens == alarm_minute_10 && second_tens == alarm_second_10 && am_pm == alarm_am_pm)
+     e2a:	20 91 bc 01 	lds	r18, 0x01BC	; 0x8001bc <hour_tens>
+     e2e:	30 91 bd 01 	lds	r19, 0x01BD	; 0x8001bd <hour_tens+0x1>
+     e32:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     e36:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     e3a:	28 17       	cp	r18, r24
+     e3c:	39 07       	cpc	r19, r25
+     e3e:	29 f5       	brne	.+74     	; 0xe8a <Update_clock+0x222>
+     e40:	20 91 b8 01 	lds	r18, 0x01B8	; 0x8001b8 <minute_tens>
+     e44:	30 91 b9 01 	lds	r19, 0x01B9	; 0x8001b9 <minute_tens+0x1>
+     e48:	80 91 c6 01 	lds	r24, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     e4c:	90 91 c7 01 	lds	r25, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     e50:	28 17       	cp	r18, r24
+     e52:	39 07       	cpc	r19, r25
+     e54:	d1 f4       	brne	.+52     	; 0xe8a <Update_clock+0x222>
+     e56:	20 91 b4 01 	lds	r18, 0x01B4	; 0x8001b4 <second_tens>
+     e5a:	30 91 b5 01 	lds	r19, 0x01B5	; 0x8001b5 <second_tens+0x1>
+     e5e:	80 91 c2 01 	lds	r24, 0x01C2	; 0x8001c2 <alarm_second_10>
+     e62:	90 91 c3 01 	lds	r25, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     e66:	28 17       	cp	r18, r24
+     e68:	39 07       	cpc	r19, r25
+     e6a:	79 f4       	brne	.+30     	; 0xe8a <Update_clock+0x222>
+     e6c:	20 91 b2 01 	lds	r18, 0x01B2	; 0x8001b2 <am_pm>
+     e70:	30 91 b3 01 	lds	r19, 0x01B3	; 0x8001b3 <am_pm+0x1>
+     e74:	80 91 c0 01 	lds	r24, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     e78:	90 91 c1 01 	lds	r25, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     e7c:	28 17       	cp	r18, r24
+     e7e:	39 07       	cpc	r19, r25
+     e80:	21 f4       	brne	.+8      	; 0xe8a <Update_clock+0x222>
+		{
+			BUZZER_on();
+     e82:	0e 94 56 00 	call	0xac	; 0xac <BUZZER_on>
+			LED_on();
+     e86:	0e 94 5e 00 	call	0xbc	; 0xbc <LED_on>
+     e8a:	08 95       	ret
+
+00000e8c <main>:
+#include "timer.h"
+
+
+int main(void)
+{
+	LCD_inti();
+     e8c:	0e 94 57 01 	call	0x2ae	; 0x2ae <LCD_inti>
+	keypad_init();
+     e90:	0e 94 66 00 	call	0xcc	; 0xcc <keypad_init>
+	timer0_init();
+     e94:	0e 94 bb 07 	call	0xf76	; 0xf76 <timer0_init>
+	BUZZER_LED_init();
+     e98:	0e 94 49 00 	call	0x92	; 0x92 <BUZZER_LED_init>
+    unsigned char key = 0;
+	unsigned short Two_click = 0;
+	timer0_setCallback(Update_clock);
+     e9c:	84 e3       	ldi	r24, 0x34	; 52
+     e9e:	96 e0       	ldi	r25, 0x06	; 6
+     ea0:	0e 94 c6 07 	call	0xf8c	; 0xf8c <timer0_setCallback>
+	
+	lcd_gotoxy(5,0);
+     ea4:	60 e0       	ldi	r22, 0x00	; 0
+     ea6:	85 e0       	ldi	r24, 0x05	; 5
+     ea8:	0e 94 d3 01 	call	0x3a6	; 0x3a6 <lcd_gotoxy>
+	LCD_writeArray("SET Time!!");
+     eac:	83 ea       	ldi	r24, 0xA3	; 163
+     eae:	91 e0       	ldi	r25, 0x01	; 1
+     eb0:	0e 94 c6 01 	call	0x38c	; 0x38c <LCD_writeArray>
+	Set_Time();
+     eb4:	0e 94 35 02 	call	0x46a	; 0x46a <Set_Time>
+	LCD_inti();
+	keypad_init();
+	timer0_init();
+	BUZZER_LED_init();
+    unsigned char key = 0;
+	unsigned short Two_click = 0;
+     eb8:	c0 e0       	ldi	r28, 0x00	; 0
+     eba:	d0 e0       	ldi	r29, 0x00	; 0
+	lcd_gotoxy(5,0);
+	LCD_writeArray("SET Time!!");
+	Set_Time();
+    while (1) 
+    {
+		key = keypad_get_value();
+     ebc:	0e 94 8b 00 	call	0x116	; 0x116 <keypad_get_value>
+		if (key == 'x')
+     ec0:	88 37       	cpi	r24, 0x78	; 120
+     ec2:	19 f4       	brne	.+6      	; 0xeca <main+0x3e>
+		{
+			Set_Time();
+     ec4:	0e 94 35 02 	call	0x46a	; 0x46a <Set_Time>
+     ec8:	f9 cf       	rjmp	.-14     	; 0xebc <main+0x30>
+			key = 0;
+		}
+		else if(key == '-' && (Two_click == 0 && Alarm_Mode == 0)){
+     eca:	8d 32       	cpi	r24, 0x2D	; 45
+     ecc:	99 f4       	brne	.+38     	; 0xef4 <main+0x68>
+     ece:	20 97       	sbiw	r28, 0x00	; 0
+     ed0:	89 f4       	brne	.+34     	; 0xef4 <main+0x68>
+     ed2:	20 91 ae 01 	lds	r18, 0x01AE	; 0x8001ae <__data_end>
+     ed6:	30 91 af 01 	lds	r19, 0x01AF	; 0x8001af <__data_end+0x1>
+     eda:	23 2b       	or	r18, r19
+     edc:	59 f4       	brne	.+22     	; 0xef4 <main+0x68>
+			Alarm_Mode = 1;
+     ede:	81 e0       	ldi	r24, 0x01	; 1
+     ee0:	90 e0       	ldi	r25, 0x00	; 0
+     ee2:	90 93 af 01 	sts	0x01AF, r25	; 0x8001af <__data_end+0x1>
+     ee6:	80 93 ae 01 	sts	0x01AE, r24	; 0x8001ae <__data_end>
+			Set_Alarm_Time();
+     eea:	0e 94 1e 04 	call	0x83c	; 0x83c <Set_Alarm_Time>
+			key = 0;
+			Two_click = 1;
+     eee:	c1 e0       	ldi	r28, 0x01	; 1
+     ef0:	d0 e0       	ldi	r29, 0x00	; 0
+     ef2:	e4 cf       	rjmp	.-56     	; 0xebc <main+0x30>
+		}
+		
+		else if (key == '-' && (Two_click == 1 || Alarm_Mode == 1)){ 
+     ef4:	8d 32       	cpi	r24, 0x2D	; 45
+     ef6:	89 f4       	brne	.+34     	; 0xf1a <main+0x8e>
+     ef8:	c1 30       	cpi	r28, 0x01	; 1
+     efa:	d1 05       	cpc	r29, r1
+     efc:	39 f0       	breq	.+14     	; 0xf0c <main+0x80>
+     efe:	20 91 ae 01 	lds	r18, 0x01AE	; 0x8001ae <__data_end>
+     f02:	30 91 af 01 	lds	r19, 0x01AF	; 0x8001af <__data_end+0x1>
+     f06:	21 30       	cpi	r18, 0x01	; 1
+     f08:	31 05       	cpc	r19, r1
+     f0a:	39 f4       	brne	.+14     	; 0xf1a <main+0x8e>
+			Alarm_Mode = 0;
+     f0c:	10 92 af 01 	sts	0x01AF, r1	; 0x8001af <__data_end+0x1>
+     f10:	10 92 ae 01 	sts	0x01AE, r1	; 0x8001ae <__data_end>
+			key = 0;
+			Two_click = 0;
+     f14:	c0 e0       	ldi	r28, 0x00	; 0
+     f16:	d0 e0       	ldi	r29, 0x00	; 0
+     f18:	d1 cf       	rjmp	.-94     	; 0xebc <main+0x30>
+		}
+		
+		else if(key == '+'){
+     f1a:	8b 32       	cpi	r24, 0x2B	; 43
+     f1c:	29 f4       	brne	.+10     	; 0xf28 <main+0x9c>
+			
+			BUZZER_off();
+     f1e:	0e 94 5a 00 	call	0xb4	; 0xb4 <BUZZER_off>
+			LED_off();
+     f22:	0e 94 62 00 	call	0xc4	; 0xc4 <LED_off>
+     f26:	ca cf       	rjmp	.-108    	; 0xebc <main+0x30>
+			key = 0;
+		}
+		
+		else if(key == '='){
+     f28:	8d 33       	cpi	r24, 0x3D	; 61
+     f2a:	41 f6       	brne	.-112    	; 0xebc <main+0x30>
+			Alarm_Mode = 1;
+     f2c:	81 e0       	ldi	r24, 0x01	; 1
+     f2e:	90 e0       	ldi	r25, 0x00	; 0
+     f30:	90 93 af 01 	sts	0x01AF, r25	; 0x8001af <__data_end+0x1>
+     f34:	80 93 ae 01 	sts	0x01AE, r24	; 0x8001ae <__data_end>
+			displayTime(alarm_hour_10,alarm_hour_1,alarm_minute_10,alarm_minute_1,alarm_second_10,alarm_second_1,alarm_am_pm);
+     f38:	c0 90 c0 01 	lds	r12, 0x01C0	; 0x8001c0 <alarm_am_pm>
+     f3c:	d0 90 c1 01 	lds	r13, 0x01C1	; 0x8001c1 <alarm_am_pm+0x1>
+     f40:	e0 90 c4 01 	lds	r14, 0x01C4	; 0x8001c4 <alarm_second_1>
+     f44:	f0 90 c5 01 	lds	r15, 0x01C5	; 0x8001c5 <alarm_second_1+0x1>
+     f48:	00 91 c2 01 	lds	r16, 0x01C2	; 0x8001c2 <alarm_second_10>
+     f4c:	10 91 c3 01 	lds	r17, 0x01C3	; 0x8001c3 <alarm_second_10+0x1>
+     f50:	20 91 c8 01 	lds	r18, 0x01C8	; 0x8001c8 <alarm_minute_1>
+     f54:	30 91 c9 01 	lds	r19, 0x01C9	; 0x8001c9 <alarm_minute_1+0x1>
+     f58:	40 91 c6 01 	lds	r20, 0x01C6	; 0x8001c6 <alarm_minute_10>
+     f5c:	50 91 c7 01 	lds	r21, 0x01C7	; 0x8001c7 <alarm_minute_10+0x1>
+     f60:	60 91 cc 01 	lds	r22, 0x01CC	; 0x8001cc <alarm_hour_1>
+     f64:	70 91 cd 01 	lds	r23, 0x01CD	; 0x8001cd <alarm_hour_1+0x1>
+     f68:	80 91 ca 01 	lds	r24, 0x01CA	; 0x8001ca <alarm_hour_10>
+     f6c:	90 91 cb 01 	lds	r25, 0x01CB	; 0x8001cb <alarm_hour_10+0x1>
+     f70:	0e 94 de 01 	call	0x3bc	; 0x3bc <displayTime>
+     f74:	a3 cf       	rjmp	.-186    	; 0xebc <main+0x30>
+
+00000f76 <timer0_init>:
+#include "std_types.h"
+
+void (*g_callback)(void) = ((void*)0);
+
+void timer0_init(){
+	TCNT0 =247; //timer init value
+     f76:	87 ef       	ldi	r24, 0xF7	; 247
+     f78:	82 bf       	out	0x32, r24	; 50
+	SET_BIT(TIMSK, TOIE0);
+     f7a:	89 b7       	in	r24, 0x39	; 57
+     f7c:	81 60       	ori	r24, 0x01	; 1
+     f7e:	89 bf       	out	0x39, r24	; 57
+	
+	TCCR0 = (1<<FOC0) | (1<<CS02) | (1<< CS00);  //1024 prescaler
+     f80:	85 e8       	ldi	r24, 0x85	; 133
+     f82:	83 bf       	out	0x33, r24	; 51
+	SET_BIT(SREG, 7);
+     f84:	8f b7       	in	r24, 0x3f	; 63
+     f86:	80 68       	ori	r24, 0x80	; 128
+     f88:	8f bf       	out	0x3f, r24	; 63
+     f8a:	08 95       	ret
+
+00000f8c <timer0_setCallback>:
+}
+
+void timer0_setCallback(void(*a_ptr)(void)){
+	g_callback = a_ptr;
+     f8c:	90 93 d0 01 	sts	0x01D0, r25	; 0x8001d0 <g_callback+0x1>
+     f90:	80 93 cf 01 	sts	0x01CF, r24	; 0x8001cf <g_callback>
+     f94:	08 95       	ret
+
+00000f96 <__vector_11>:
+}
+
+
+ISR(TIMER0_OVF_vect){
+     f96:	1f 92       	push	r1
+     f98:	0f 92       	push	r0
+     f9a:	0f b6       	in	r0, 0x3f	; 63
+     f9c:	0f 92       	push	r0
+     f9e:	11 24       	eor	r1, r1
+     fa0:	2f 93       	push	r18
+     fa2:	3f 93       	push	r19
+     fa4:	4f 93       	push	r20
+     fa6:	5f 93       	push	r21
+     fa8:	6f 93       	push	r22
+     faa:	7f 93       	push	r23
+     fac:	8f 93       	push	r24
+     fae:	9f 93       	push	r25
+     fb0:	af 93       	push	r26
+     fb2:	bf 93       	push	r27
+     fb4:	ef 93       	push	r30
+     fb6:	ff 93       	push	r31
+	static unsigned char count = 0;
+	
+	count++;
+     fb8:	80 91 ce 01 	lds	r24, 0x01CE	; 0x8001ce <count.1629>
+     fbc:	8f 5f       	subi	r24, 0xFF	; 255
+     fbe:	80 93 ce 01 	sts	0x01CE, r24	; 0x8001ce <count.1629>
+	
+	if (count == 62) //  1 second
+     fc2:	8e 33       	cpi	r24, 0x3E	; 62
+     fc4:	59 f4       	brne	.+22     	; 0xfdc <__vector_11+0x46>
+	{
+		count = 0;
+     fc6:	10 92 ce 01 	sts	0x01CE, r1	; 0x8001ce <count.1629>
+		TCNT0 =247;
+     fca:	87 ef       	ldi	r24, 0xF7	; 247
+     fcc:	82 bf       	out	0x32, r24	; 50
+		
+		if(g_callback != NULL_PTR){
+     fce:	e0 91 cf 01 	lds	r30, 0x01CF	; 0x8001cf <g_callback>
+     fd2:	f0 91 d0 01 	lds	r31, 0x01D0	; 0x8001d0 <g_callback+0x1>
+     fd6:	30 97       	sbiw	r30, 0x00	; 0
+     fd8:	09 f0       	breq	.+2      	; 0xfdc <__vector_11+0x46>
+			(*g_callback)();
+     fda:	09 95       	icall
+		}
+		
+	}
+	
+     fdc:	ff 91       	pop	r31
+     fde:	ef 91       	pop	r30
+     fe0:	bf 91       	pop	r27
+     fe2:	af 91       	pop	r26
+     fe4:	9f 91       	pop	r25
+     fe6:	8f 91       	pop	r24
+     fe8:	7f 91       	pop	r23
+     fea:	6f 91       	pop	r22
+     fec:	5f 91       	pop	r21
+     fee:	4f 91       	pop	r20
+     ff0:	3f 91       	pop	r19
+     ff2:	2f 91       	pop	r18
+     ff4:	0f 90       	pop	r0
+     ff6:	0f be       	out	0x3f, r0	; 63
+     ff8:	0f 90       	pop	r0
+     ffa:	1f 90       	pop	r1
+     ffc:	18 95       	reti
+
+00000ffe <_exit>:
+     ffe:	f8 94       	cli
+
+00001000 <__stop_program>:
+    1000:	ff cf       	rjmp	.-2      	; 0x1000 <__stop_program>
